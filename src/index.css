@@ -1,0 +1,659 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+:root{
+    --clr: rgb(235, 235, 235);
+}
+body{
+    min-height: 100vh;
+    background-color: var(--clr);
+}
+.main_content{
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+.sidebar{
+    width: 30rem;
+    height: 100vh;
+    position: relative;
+    background-color: #212322;
+    transition: .5s;
+}
+.sidebar ul{
+    position: relative;
+    height: 100vh;
+}
+.sidebar ul li{
+    position: relative;
+    list-style: none;
+}
+.logo{
+    padding: 1rem;
+    margin: 0;
+    background-color: rgb(255, 94, 0);
+}
+.logo_link{
+    display: flex;
+    align-items: center;
+}
+.logo_link img{
+    width: 22%;
+}
+.logo_text, .logo_text:link, .logo_text:visited{
+    font-size: 2.5rem;
+    text-align: center;
+    width: 100%;
+    font-family: "Oswald", sans-serif;
+    color: white;
+    text-decoration: none !important;
+}
+.sidebar ul .logo{
+    margin-bottom: 5rem;
+    padding-top: 1rem;
+}
+
+.Menulist{
+    padding-left: 1rem;
+}
+
+.link_container{
+    white-space: nowrap;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.bottom_container{
+    white-space: nowrap;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.link_container .icon ion-icon{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 6rem;
+    height: 35px;
+    padding-left: 4px;
+    color: white;
+    font-size: 1.5rem;
+    transition: .5s;
+}
+.link_container .text{
+    position: relative;
+    font-family: "Oswald", sans-serif;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    padding-left: 15px;
+    letter-spacing: .05em;
+    transition: .5s;
+}
+
+.bottom_container .icon ion-icon{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 6rem;
+    height: 35px;
+    padding-left: 5px;
+    color: white;
+    font-size: 1.5rem;
+    transition: .5s;
+}
+.bottom_container .text{
+    position: relative;
+    font-family: "Oswald", sans-serif;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    padding-left: 15px;
+    letter-spacing: .05em;
+    transition: .5s;
+}
+
+.nav-el-1:hover .icon ion-icon,
+.nav-el-1:hover .text,
+.active.nav-el-1:hover .text{
+    color: #ffa117;
+}
+
+.nav-el-2:hover .icon ion-icon,
+.nav-el-2:hover .text,
+.active.nav-el-2:hover .text{
+    color: #f44336;
+}
+
+.nav-el-3:hover .icon ion-icon,
+.nav-el-3:hover .text,
+.active.nav-el-3:hover .text{
+    color: #0fc70f;
+}
+
+.nav-el-4:hover .icon ion-icon,
+.nav-el-4:hover .text,
+.active.nav-el-4:hover .text{
+    color: #2196f3;
+}
+
+.nav-el-5:hover .icon ion-icon,
+.nav-el-5:hover .text,
+.active.nav-el-5:hover .text{
+    color: #b145e9;
+}
+
+.nav-el-6:hover .icon ion-icon,
+.nav-el-6:hover .text,
+.active.nav-el-6:hover .text{
+    color: #e12e13;
+}
+
+.nav-el-7:hover .icon ion-icon,
+.nav-el-7:hover .text,
+.active.nav-el-7:hover .text{
+    color: #e92f69;
+}
+
+.nav-el-8:hover .icon ion-icon,
+.nav-el-8:hover .text,
+.active.nav-el-8:hover .text{
+    color: #1EEAC8;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.bottom_container:hover .icon ion-icon,
+.bottom_container:hover .text{
+    color: rgb(0, 60, 255)
+}
+
+.active{
+    background-color: var(--clr);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.sidebar ul li.active::before{
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 5px 5px 0 5px var(--clr);
+    background: transparent;
+}
+
+.sidebar ul li.active .text{
+    color: #212322;
+}
+
+.sidebar ul li.active::after{
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 5px -5px 0 5px var(--clr);
+    background: transparent;
+}
+
+.sidebar ul li.active ion-icon{
+    color: black;
+}
+
+.sidebar ul .nav-el-1.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #ffa117;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-2.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #f44336;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-3.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #0fc70f;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-4.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #2196f3;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-5.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #b145e9;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-6.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #e12e13;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-7.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #e92f69;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-8.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #1EEAC8;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .active:hover .icon::before{
+    background-color: #212322;
+}
+
+/* Estilos para el header */
+.content_container{
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.main_content_header{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: .1rem solid rgb(230, 230, 230);
+    box-shadow: 1px 1px 12px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px 1px 12px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 12px -9px rgba(0,0,0,0.75);
+}
+
+.main_content_user{
+    display: flex;
+    align-items: center;
+    border-left: .1rem solid rgb(146, 146, 146);
+    padding: .5rem 2rem .5rem 2rem;
+    transition: .5s ease;
+}
+.main_content_user:hover{
+    background-color: #212322;
+}
+.main_content_user:hover h3{
+    color: white;
+}
+.username{
+    transition: .5s;
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+    padding: 0 2.5rem 0 1rem;
+    color: #212322;
+}
+
+.user_img{
+    padding: .5rem;
+}
+.user_img img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+}
+
+.main_content_search_bar{
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding: 0 4rem 0 4rem;
+    font-size: 3rem;
+}
+
+.search_bar{
+    padding: .5rem 1.5rem;
+    width: 50%;
+    border-radius: 5rem;
+    background-color: rgb(238, 238, 238);
+    font-weight: 400;
+    border: solid .2rem rgb(224, 224, 224);
+    font-family: "Lato", sans-serif;
+    outline: none;
+}
+
+.main_content_search_bar_button{
+    position: absolute;
+    background-color: transparent;
+    right: 51%;
+    cursor: pointer;
+    border: none;
+    font-size: 3rem;
+}
+
+.search_bar:focus{
+    background-color: rgb(245, 245, 245);
+    border: solid .2rem rgb(124, 124, 124);
+}
+
+/* Estilos para el contenido en las paginas */
+.page{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 91.4vh;
+}
+
+.content_module{
+    width: 100%;
+    height: 90vh;
+    padding: 4rem;
+    overflow: hidden;
+}
+.sidebar_right{
+    width: 40rem;
+    height: 100%;
+    background-color: #212322;
+}
+
+.book_content{
+    background-color: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    overflow: hidden;
+}
+
+.book_filters{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 2.5rem;
+    border-bottom: #ffa117 .1rem solid;
+}
+
+.book_filters_input_container{
+    font-family: "Lato", sans-serif;
+    font-size: 2.5rem;
+}
+
+.book_filters_input_container label{
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.book_filters_input_container input{
+    background-color: #ffa21731;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    border: solid .1rem #ffa217d0;
+    color: rgb(88, 88, 88);
+    outline: none;
+}
+
+.book_filters_input_container select{
+    background-color: #ffa21731;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    border: solid .1rem #ffa217d0;
+    color: rgb(88, 88, 88);
+    outline: none;
+}
+
+
+.book_filters_input_container input:focus{
+    background-color: #ffa2170c;
+    border: solid .1rem #ffa217;
+    color: black;
+}
+
+.book_filters_input_container select:focus{
+    background-color: #ffa2170c;
+    border: solid .1rem #ffa217;
+    color: black;
+}
+
+.books{
+    padding: 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 1rem;
+    overflow-y: scroll;
+    grid-auto-columns: min-content;
+    height: inherit;
+    height: 92%;
+}
+
+.book{
+    border-radius: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+    transition: .3s;
+}
+
+.book:hover{
+    box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
+}
+
+.book.selected{
+    background-color: #ffa117;
+}
+
+.book_image{
+    border-radius: .5rem;
+    width: 90%;
+}
+
+.book_categorias{
+    display: flex;
+    font-size: 1rem;
+}
+
+.book_categorias{
+    font-size: 2rem;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    width: 100%;
+    display: flex;
+}
+
+.book_categoria{
+    margin: .5rem .2rem;
+    padding: .2rem .5rem;
+    background-color: #ffa217;
+    border-radius: 1rem;
+}
+
+.book_titulo{
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
+    width: 100%;
+}
+
+.book_autores{
+    font-size: 1.1rem;
+    font-family: "Lato", sans-serif;
+    text-align: left;
+    width: 100%;
+}
+
+/* Estilos de libro para sidebar */
+.sidebar_right{
+    display: grid;
+    padding: 2rem;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.sidebar_book_image{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding-top: 2rem;
+}
+.sidebar_book_image img{
+    width: 22rem;
+    height: 100%;
+}
+.sidebar_book_title{
+    color: white;
+    font-size: 2.3rem;
+    text-align: center;
+    font-family: "Nunito", sans-serif;
+    margin: 1.5rem 0;
+}
+
+.sidebar_book_autores,
+.sidebar_book_editorial{
+    font-size: 1.6rem;
+    font-family: "Nunito", sans-serif;
+    text-align: center;
+    color: rgb(112, 118, 126);
+}
+
+.sidebar_quickinfo{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-evenly;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    color: rgb(236, 236, 236);
+    margin: 2rem 0;
+}
+
+.sidebar_quickinfo_card:nth-child(1){
+    border-right: .1rem solid rgb(204, 204, 204);
+}
+
+.sidebar_quickinfo_card:nth-child(3){
+    border-left: .1rem solid rgb(204, 204, 204);
+}
+
+.sidebar_book_edicion_text{
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+.sidebar_book_edicion_info{
+    font-size: 1.6rem;
+}
+
+.sidebar_book_sinopsis{
+    font-size: 1.3rem;
+    color: rgb(223, 223, 223);
+    font-family: "Lato", sans-serif;
+    text-align: justify;
+}
+
+.sidebar_book_stock{
+    font-size: 1.6rem;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.button_sidebar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button_sidebar ion-icon{
+    margin: 0 0rem 0 .5rem;
+    font-size: 3rem;
+}
+*::-webkit-scrollbar {
+    height: 9px;
+    width: 9px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: #021503;
+  }
+  
+  *::-webkit-scrollbar-track:hover {
+    background-color: #021503;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #021503;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #A66F00;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #FB7704;
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: #EBA400;
+  }

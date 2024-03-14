@@ -37,6 +37,7 @@ body{
     background-color: rgb(255, 94, 0);
 }
 .logo_link{
+    position: relative;
     display: flex;
     align-items: center;
 }
@@ -408,6 +409,7 @@ body{
     width: 40rem;
     height: 100%;
     background-color: #212322;
+    transition: .5s;
 }
 
 .book_content{
@@ -433,6 +435,7 @@ body{
 
 .book_filters_input_container{
     font-family: "Lato", sans-serif;
+    margin: .5rem 0;
     font-size: 2.5rem;
 }
 
@@ -657,3 +660,280 @@ body{
   *::-webkit-scrollbar-thumb:active {
     background-color: #EBA400;
   }
+
+.burger_menu{
+    display: none !important;
+    visibility: hidden;
+    background-color: #212322;
+    position: relative;
+    width: 8.2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: .1rem rgb(189, 189, 189) solid;
+    border-right: .1rem rgb(189, 189, 189) solid;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.bar{
+    content: "";
+    background-color: white;
+    width: 85%;
+    height: 5%;
+    transition: .3s;
+}
+
+.bar::after{
+    content: "";
+    background-color: inherit;
+    width: 85%;
+    height: 5%;
+    position: absolute;
+    top: 65%;
+    transition: .4s top;
+}
+
+.bar::before{
+    content: "";
+    background-color: inherit;
+    width: 85%;
+    height: 5%;
+    position: absolute;
+    top: 30%;
+    transition: .4s top;
+}
+
+.burger_menu:hover .bar::after{
+    top: 69%;
+}
+
+.burger_menu:hover .bar::before{
+    top: 26%;
+}
+
+.sidebar_close,
+.sidebar_close{
+    display: none;
+}
+
+@media(max-width: 81.25em){
+    .sidebar{
+        position: fixed;
+        left: 0;
+        z-index: 100;
+        backdrop-filter: blur(5px);
+    }
+    .sidebar_filter{
+        position: fixed;
+        z-index: 50;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        backdrop-filter: blur(5px) brightness(75%);
+    }
+    .sidebar_filter.hidden{
+        display: none;
+    }
+    .burger_menu{
+        display: flex !important;
+        visibility: visible;
+    }
+    .burger_menu:hover{
+        background-color: #e4e4e4;
+    }
+    .burger_menu:hover .bar{
+        background-color: black;
+    }
+    .sidebar.hidden{
+        left: -100%;
+    }
+
+    .sidebar_close{
+        top: 50%;
+        left: 105%;
+        cursor: pointer;
+        transform: translateY(-50%);
+        position: absolute;
+        border: .1rem solid #212322;
+        z-index: 101;
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-family: "Oswald", sans-serif;
+        font-weight: 900;
+        transition: .3s;
+    }
+    .sidebar_close:hover{
+        color: white;
+        background-color: #212322;
+    }
+
+    .link_container .text,
+    .bottom_container .text{
+        font-size: 1.7rem;
+        height: 5.5rem;
+    }
+    .link_container .icon ion-icon,
+    .bottom_container .icon ion-icon{
+        min-width: 6rem;
+        height: 30px;
+    }
+    .sidebar ul li.active::before,
+    .sidebar ul li.active::after{
+        display: none;
+    }
+    .active{
+        border-radius: 50px;
+        margin-right: 1rem;
+    }
+    .search_bar{
+        width: 70%;
+    }
+    .main_content_search_bar_button{
+        right: 34%;
+    }
+    .username{
+        font-size: 1.8rem;
+    }
+    .user_img img{
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .main_content_user{
+        padding: .5rem 1rem .5rem 1rem;
+    }
+}
+
+@media(max-width: 59.375em){
+    .sidebar_right{
+        position: fixed;
+        display: grid;
+        top: 0%;
+        right: 0;
+    }
+    .main_content{
+        grid-template-columns: 1fr;
+    }
+    .content_module{
+        padding: 1rem 1rem 2rem 1rem;
+    }
+    .sidebar_right_close{
+        position: absolute;
+        top: 3%;
+        left: 8%;
+        font-size: 3.5rem;
+        font-family: "Lato", sans-serif;
+        font-weight: 300;
+        cursor: pointer;
+        color: white;
+    }
+    .sidebar_right.hidden{
+        right: -100%;
+        display: none;
+    }
+    .search_bar{
+        width: 90%;
+    }
+    .main_content_search_bar_button{
+        right: 20%;
+    }
+}
+
+/* Media queries para sidebar de libro*/
+@media(max-width: 59.375em){
+    .sidebar_book_image img{
+        height: 100%;
+        width: 50%;
+    }
+    .sidebar_book_title{
+        font-size: 1.8rem;
+        margin-bottom: 0;
+    }
+    .sidebar_book_autores,
+    .sidebar_book_editorial{
+        font-size: 1.4rem;
+    }
+
+    .sidebar_book_edicion_info{
+        font-size: 1.3rem;
+    }
+
+    .sidebar_book_sinopsis{
+        font-size: 1.3rem;
+        margin: 0 2rem;
+    }
+
+    .sidebar_book_stock{
+        font-size: 1.5rem;
+        margin: 1rem 0 1rem 0;
+    }
+    .sidebar_quickinfo{
+        grid-template-rows: min-content;
+        margin: .5rem 0 1rem 0;
+    }
+}
+
+@media(max-width: 43.75em){
+    .search_bar{
+        width: 100%;
+    }
+    .main_content_search_bar_button{
+        right: 13%;
+    }
+    .username{
+        display: none;
+    }
+}
+
+@media(max-width: 37.5em){
+    .books{
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+    .book_titulo{
+        margin-top: .5rem;
+        font-size: 1.3rem;
+    }
+    .book_autores{
+        font-size: 1rem;
+    }
+    .book_categoria{
+        display: none;
+    }
+}
+@media(max-width: 31.25em){
+    .sidebar_right{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media(max-width: 31.25em){
+    .search_bar{
+        display: none;
+    }
+    .books{
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    .main_content_search_bar_button{
+        display: none;
+    }
+    .book_filters{
+        padding-bottom: 1rem;
+    }
+    .book_filters_input_container{
+        font-size: 1.4rem;
+    }
+    .book_filters_input_container input,
+    .book_filters_input_container select{
+        padding: .2rem .5rem;
+    }
+}

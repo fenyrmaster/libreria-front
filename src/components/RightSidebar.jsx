@@ -2,9 +2,10 @@ import React from "react";
 import bookExample from "../assets/book_example.png"
 import RightSidebarButton from "./RightSidebarButton";
 
-export default function RightSidebar(){
+export default function RightSidebar({setRightSidebar, rightSidebar}){
     return(
-        <div className="sidebar_right">
+        <div className={`sidebar_right ${rightSidebar ? "" : "hidden"}`}>
+            <div className="sidebar_right_close" onClick={() => setRightSidebar(false)}>X</div>
             <div className="sidebar_book_image">
                 <img src={bookExample}/>
             </div>

@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Outlet, Link } from "react-router-dom"
+import { Outlet, Link, useLocation } from "react-router-dom"
 import libreriaLogo from "../assets/6fabc24c3830d75486725cc6d786dfbb-logotipo-de-circulos-de-libro.png"
 import defaultAvatar from "../assets/default-avatar.jpg"
 import RightSidebar from "../components/RightSidebar";
 
 export default function RootLayout(){
+    let location = useLocation();
+    console.log(location.pathname)
 
     const [sidebar, setSidebar] = useState(false);
     const [rightSidebar, setRightSidebar] = useState(false);
@@ -21,14 +23,14 @@ export default function RootLayout(){
                     <ul>
                         <li className="logo">
                             <div className="sidebar_close" onClick={() => setSidebar(false)}>X</div>
-                            <Link href="/libros" className="logo_link" style={{textDecoration: "none"}}>
+                            <Link href="/" className="logo_link" style={{textDecoration: "none"}}>
                                 <img src={libreriaLogo}></img>
                                 <h1 className="logo_text">Librerias MX</h1>
                             </Link>
                         </li>
                         <div className="Menulist">
-                            <li className="nav-el-1 active">
-                                <Link to="/libros" className="link_container" style={{textDecoration: "none"}}>
+                            <li className={`nav-el-1 ${location.pathname == "/" && "active"}`}>
+                                <Link to="/" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="book-outline"></ion-icon></div>
                                     <div className="text">Libros</div>
                                 </Link>
@@ -45,8 +47,8 @@ export default function RootLayout(){
                                     <div className="text">Mi Cuenta</div>
                                 </Link>
                             </li>
-                            <li className="nav-el-4">
-                                <Link to="/libros" className="link_container" style={{textDecoration: "none"}}>
+                            <li className={`nav-el-4 ${location.pathname == "/iniciar-sesion" && "active"}`}>
+                                <Link to="/iniciar-sesion" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="log-in-outline"></ion-icon></div>
                                     <div className="text">Iniciar Sesion</div>
                                 </Link>
@@ -69,7 +71,7 @@ export default function RootLayout(){
                                     <div className="text">Gestionar Prestamos</div>
                                 </Link>
                             </li>
-                            <li className="nav-el-8">
+                            <li className={`nav-el-8 ${location.pathname == "/libros" && "active"}`}>
                                 <Link to="/libros" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="library-outline"></ion-icon></div>
                                     <div className="text">Gestionar Libros</div>
@@ -105,7 +107,7 @@ export default function RootLayout(){
                         <div className="content_module">
                             <Outlet setRightSidebar={setRightSidebar}/>
                         </div>
-                        <RightSidebar setRightSidebar={setRightSidebar} rightSidebar={rightSidebar}/>
+                        <RightSidebar setRightSidebar={setRightSidebar} rightSidebar={rightSidebar} location={location.pathname}/>
                     </div>
                 </div>
             </main>

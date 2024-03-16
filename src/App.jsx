@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import BookAdminPage from './components/BookAdminPage'
 import BookPage from './components/BookPage'
+import RegistroLogin from './components/RegistroLogin'
 import RootLayout from './layout/RootLayout'
 
 function App() {
@@ -11,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<RootLayout/>}>
           <Route path='' element={<BookPage/>}/>
+          <Route path='libros' element={<BookAdminPage/>}/>
+          <Route path='iniciar-sesion' element={<RegistroLogin/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

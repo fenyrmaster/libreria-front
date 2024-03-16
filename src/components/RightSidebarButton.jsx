@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-export default function RightSidebarButton({text, color, icon}){
+export default function RightSidebarButton({text, color, icon, whiteBG}){
     const Button = styled.button`
         font-size: 2.5rem;
         background-color: transparent;
@@ -12,7 +12,7 @@ export default function RightSidebarButton({text, color, icon}){
         transition: .3s;
 
         &:hover{
-            color: white;
+            color: ${!whiteBG ? "white" : color};
         }
     `;
 
@@ -27,7 +27,7 @@ export default function RightSidebarButton({text, color, icon}){
         &:hover{
             border: .3rem solid ${color};
             background-color: ${color}20;
-            color: white;
+            color: ${!whiteBG ? "white" : color};
         }
     `;
 

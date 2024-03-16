@@ -400,6 +400,9 @@ body{
 }
 
 .content_module{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 90vh;
     padding: 4rem;
@@ -433,6 +436,10 @@ body{
     border-bottom: #ffa117 .1rem solid;
 }
 
+.book_filters.skyblue{
+    border-bottom: #1EEAC8 .1rem solid;
+}
+
 .book_filters_input_container{
     font-family: "Lato", sans-serif;
     margin: .5rem 0;
@@ -460,6 +467,17 @@ body{
     border: solid .1rem #ffa217d0;
     color: rgb(88, 88, 88);
     outline: none;
+}
+
+.book_filters.skyblue .book_filters_input_container input,
+.book_filters.skyblue .book_filters_input_container select{
+    border: solid .1rem #1EEAC8;
+    background-color: #cdfff7;
+}
+
+.book_filters.skyblue .book_filters_input_container input:focus,
+.book_filters.skyblue .book_filters_input_container select:focus{
+    background-color: #ecfffc;
 }
 
 
@@ -495,6 +513,10 @@ body{
     align-items: center;
     padding: 1rem 2rem;
     transition: .3s;
+}
+
+.book_blue .book_categoria{
+    background-color: #1EEAC8;
 }
 
 .book:hover{
@@ -718,7 +740,231 @@ body{
     display: none;
 }
 
+.adminInfo{
+    width: 100%;
+}
+.adminInfo_stock{
+    font-size: 1.4rem;
+    font-family: "Oswald", sans-serif;
+    width: 100%;
+    font-weight: 500;
+    margin-bottom: .8rem;
+}
+.adminInfo_acciones{
+    font-size: 2rem;
+    display: flex;
+}
+.adminInfo_acciones_editar,
+.adminInfo_acciones_eliminar{
+    width: 50%;
+    font-weight: 600;
+    padding: .3rem .8rem;
+}
+
+.adminInfo_acciones_editar{
+    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-top: .2rem solid orange;
+    border-left: .2rem solid orange;
+    border-bottom: .2rem solid orange;
+    background-color: rgb(255, 236, 202);
+    border-right: solid .1rem black;
+    transition: .3s;
+}
+
+.adminInfo_acciones_editar:hover{
+    background-color: orange;
+    color: white;
+}
+
+.adminInfo_acciones_eliminar{
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+    border-top: .2rem solid red;
+    border-right: .2rem solid red;
+    border-bottom: .2rem solid red;
+    background-color: rgb(255, 205, 202);
+    border-left: solid .1rem black;
+    transition: .3s;
+}
+
+.adminInfo_acciones_eliminar:hover{
+    background-color: red;
+    color: white;
+}
+
+.sidebar_right_close{
+    display: none;
+}
+
+.adminInfo_acciones_eliminar{
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.sidebar_book_form{
+    width: 100%;
+}
+
+.sidebar_book_form h2{
+    font-size: 2.8rem;
+    color: white;
+    font-family: "Oswald", sans-serif;
+    margin: 2rem 0;
+}
+
+.sidebar_book_form_group{
+    font-size: 2.4rem;
+    margin: .5rem;
+}
+
+.sidebar_book_form_group input{
+    width: 100%;
+    padding: .3rem .6rem;
+    border-radius: 1rem;
+    border: #1EEAC8 solid .1rem;
+    outline: none;
+    background-color: hwb(167 89% 0%);
+}
+
+.sidebar_book_form_group input:focus{
+    background-color: white;
+}
+
+.sidebar_book_form_group label{
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+}
+
+.sidebar_book_textarea{
+    max-width: 100%;
+    min-width: 100%;
+    font-family: "Lato", sans-serif;
+    padding: .3rem .6rem;
+    border-radius: 1rem;
+    border: #1EEAC8 solid .1rem;
+    outline: none;
+    height: 14rem;
+    background-color: hwb(167 89% 0%);
+    resize: none;
+    margin-bottom: 1rem;
+}
+
+.sidebar_book_textarea:focus{
+    background-color: white;
+}
+
+/* Estilos para el login/registro */
+.form_general{
+    width: 55rem;
+    height: 70%;
+    background-color:white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+}
+
+.register{
+    height: 30rem;
+}
+
+.form_general_group{
+    font-family: "Lato", sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5rem;
+    padding: 1rem 3rem;
+}
+
+.register_active .btn{
+    left: 50%;
+}
+
+.form_general_group label{
+    font-weight: 600;
+    margin-bottom: .6rem;
+}
+
+.form_box{
+    overflow-y: scroll;
+}
+
+.form_box{
+    height: 100%;
+}
+
+.form_general_double{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form_general_double input{
+    width: 100%;
+}
+
+.form_general_double .form_general_group{
+    padding: 1rem .5rem;
+}
+
+.form_general_group input{
+    background-color: #2196f331;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    border: solid .1rem #2196f3;
+    color: rgb(88, 88, 88);
+    outline: none;
+}
+
+.form_general_group input:focus{
+    background-color: #81b4e031;
+}
+
+
+.button_box{
+    display: flex;
+    width: min-content;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #2495ff1f;
+    border-radius: 3rem;
+}
+.btn{
+    top: 0;
+    left: 0%;
+    position: absolute;
+    width: 50%;
+    background-color: #2196f3;
+    height: 100%;
+    border-radius: 3rem;
+    transition: .5s;
+}
+
+.toggle-btn{
+    white-space: nowrap;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    padding: 1rem 3rem;
+    text-align: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+.button_margin{
+    margin-top: 2rem;
+}
+
 @media(max-width: 81.25em){
+    .main_content{
+        display: block;
+    }
     .sidebar{
         position: fixed;
         left: 0;
@@ -811,6 +1057,9 @@ body{
     .main_content_user{
         padding: .5rem 1rem .5rem 1rem;
     }
+    .form_general{
+        height: 90%;
+    }
 }
 
 @media(max-width: 59.375em){
@@ -819,6 +1068,9 @@ body{
         display: grid;
         top: 0%;
         right: 0;
+    }
+    .sidebar_book_form h2{
+        margin-top: 4rem;
     }
     .main_content{
         grid-template-columns: 1fr;
@@ -829,12 +1081,19 @@ body{
     .sidebar_right_close{
         position: absolute;
         top: 3%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         left: 8%;
         font-size: 3.5rem;
         font-family: "Lato", sans-serif;
-        font-weight: 300;
+        font-weight: 700;
         cursor: pointer;
-        color: white;
+        color: black;
+        background-color: white;
+        width: 4rem;
+        border-radius: 50%;
+        height: 4rem;
     }
     .sidebar_right.hidden{
         right: -100%;
@@ -908,6 +1167,22 @@ body{
     .book_categoria{
         display: none;
     }
+    .form_general{
+        width: 100%;
+        height: 100%;
+    }
+    .form_general_group{
+        padding: .5rem 0;
+    }
+    .form_general_double{
+        justify-content: space-between;
+    }
+    .toggle-btn{
+        font-size: 1rem;
+    }
+    .form_general_label{
+        font-size: 1.3rem;
+    }
 }
 @media(max-width: 31.25em){
     .sidebar_right{
@@ -922,6 +1197,12 @@ body{
     }
     .books{
         grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    .adminInfo_acciones{
+        font-size: 1.5rem;
+    }
+    .book{
+        padding: .5rem 1rem;
     }
     .main_content_search_bar_button{
         display: none;

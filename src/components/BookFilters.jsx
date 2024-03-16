@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function BookFilters(){
+export default function BookFilters({admin}){
     return(
-        <form className="book_filters">
+        <form className={`book_filters ${admin && "skyblue"}`}>
             <div className="book_filters_input_container">
                 <label htmlFor="nombre" className="book_filters_label">Nombre:</label>
                 <input name="nombre" id="nombre" className="book_filters_input"/>

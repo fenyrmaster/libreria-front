@@ -41,8 +41,8 @@ export default function RootLayout(){
                                     <div className="text">Prestamos</div>
                                 </Link>
                             </li>
-                            <li className="nav-el-3">
-                                <Link to="/libros" className="link_container" style={{textDecoration: "none"}}>
+                            <li className={`nav-el-3 ${location.pathname == "/cuenta" && "active"}`}>
+                                <Link to="/cuenta" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="person-outline"></ion-icon></div>
                                     <div className="text">Mi Cuenta</div>
                                 </Link>

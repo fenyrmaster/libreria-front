@@ -416,7 +416,7 @@ body{
 }
 
 .book_content{
-    background-color: white;
+    background-color: #fffaf5;
     border-radius: 2rem;
     padding: 2rem;
     width: 100%;
@@ -425,6 +425,10 @@ body{
     -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
     overflow: hidden;
+}
+
+.book_content_skyblue{
+    background-color: #f6fffd;
 }
 
 .book_filters{
@@ -436,8 +440,35 @@ body{
     border-bottom: #ffa117 .1rem solid;
 }
 
+.book_add{
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    top: 15%;
+    outline: none;
+    border: .1rem white solid;
+    background-color: #212322;
+    color: white;
+    right: -1%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 3rem;
+    width: 3rem;
+    height: 3rem;
+    transition: .3s;
+}
+
+.book_add:hover{
+    background-color: white;
+    color: black;
+    border: .1rem solid black;
+}
+
 .book_filters.skyblue{
+    position: relative;
     border-bottom: #1EEAC8 .1rem solid;
+    align-items: center;
 }
 
 .book_filters_input_container{
@@ -523,6 +554,7 @@ body{
     box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
 -webkit-box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
+    transform: translateY(-.3rem) scale(1.03);
 }
 
 .book.selected{
@@ -854,12 +886,11 @@ body{
 .sidebar_book_textarea:focus{
     background-color: white;
 }
-
 /* Estilos para el login/registro */
 .form_general{
     width: 55rem;
     height: 70%;
-    background-color:white;
+    background-color: #e9edf0;
     border-radius: 2rem;
     padding: 2rem;
     box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
@@ -961,6 +992,100 @@ body{
     margin-top: 2rem;
 }
 
+.user_profile{
+    background-color: #fbfffb;
+    border-radius: 2rem;
+    padding: 2rem;
+    width: 90%;
+    height: min-content;
+    box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    overflow: hidden;
+}
+
+.user_data{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user_data_img_box{
+    flex-basis: 35%;
+}
+.user_data_img{
+    padding: 3rem;
+    border-radius: 50%;
+    width: 100%;
+}
+
+.user_data_container{
+    flex-basis: 65%;
+}
+
+.user_data_container_h2{
+    padding: .8rem 2rem;
+    font-size: 2.5rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+}
+
+.user_data_box{
+    display: grid;
+    margin: 1rem 1rem 1rem 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_data_box_data:nth-child(3){
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+}
+
+.user_data_box_data{
+    background-color: white;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    border: #0fc70f .1rem solid;
+    transition: .3s;
+}
+
+.user_data_box_data:hover{
+    transform: translateY(-.4rem) scale(1.02);
+    box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    background-color: white;
+}
+
+.button_full_width div{
+    width: 100%;
+    margin-right: 2rem;
+    margin-left: 1rem;
+}
+
+.user_data_box_data_label{
+    font-family: "Oswald", sans-serif;
+}
+.user_data_box_data_content{
+    font-family: "Lato", sans-serif;
+}
+
+.button_full_width{
+    margin-bottom: 2rem;
+}
+
 @media(max-width: 81.25em){
     .main_content{
         display: block;
@@ -1060,6 +1185,14 @@ body{
     .form_general{
         height: 90%;
     }
+    .user_data{
+        flex-direction: column;
+        width: 100%;
+    }
+    .user_profile{
+        overflow-y: scroll;
+        height: 100%;
+    }
 }
 
 @media(max-width: 59.375em){
@@ -1151,6 +1284,21 @@ body{
     .username{
         display: none;
     }
+    .user_data_box_data{
+        font-size: 2.4rem;
+        padding: 2rem 1.3rem;
+    }
+    .user_data_container_h2{
+        font-size: 2rem;
+    }
+
+    .user_data_img_box{
+        width: 50%;
+    }
+
+    .user_data_img{
+        padding: 0;
+    }
 }
 
 @media(max-width: 37.5em){
@@ -1216,5 +1364,22 @@ body{
     .book_filters_input_container input,
     .book_filters_input_container select{
         padding: .2rem .5rem;
+    }
+    .user_data_box{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+    .user_data_container{
+        width: 100%;
+    }
+    .user_data_box_data:nth-child(3){
+        grid-column: 1 / 2;
+        grid-row: 5 / 6;
+    }
+    .button_full_width div button{
+        font-size: 2rem !important;
+    }
+    .button_full_width{
+        margin-bottom: 2rem;
     }
 }

@@ -18,6 +18,7 @@ export default function BookFilters({admin}){
                     <option>Ficcion</option>
                 </select>
             </div>
+            {admin && <button className="book_add" type="button">+</button>}
         </form>
     )
 }

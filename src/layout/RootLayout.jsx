@@ -59,8 +59,8 @@ export default function RootLayout(){
                                     <div className="text">Gestionar Usuarios</div>
                                 </Link>
                             </li>
-                            <li className="nav-el-6">
-                                <Link to="/libros" className="link_container" style={{textDecoration: "none"}}>
+                            <li className={`nav-el-6 ${location.pathname == "/etiquetas" && "active"}`}>
+                                <Link to="/etiquetas" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="bookmarks-outline"></ion-icon></div>
                                     <div className="text">Gestionar Etiquetas</div>
                                 </Link>

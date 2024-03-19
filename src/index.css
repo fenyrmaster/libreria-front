@@ -528,7 +528,8 @@ body{
     padding: 1rem;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 22rem));
+    grid-auto-rows: max-content;
     grid-gap: 1rem;
     overflow-y: scroll;
     grid-auto-columns: min-content;
@@ -550,7 +551,8 @@ body{
     background-color: #1EEAC8;
 }
 
-.book:hover{
+.book:hover,
+.tag:hover{
     box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
 -webkit-box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 1px 17px -4px rgba(0,0,0,0.75);
@@ -850,7 +852,8 @@ body{
     margin: .5rem;
 }
 
-.sidebar_book_form_group input{
+.sidebar_book_form_group input,
+.sidebar_book_form_group select{
     width: 100%;
     padding: .3rem .6rem;
     border-radius: 1rem;
@@ -1084,6 +1087,65 @@ body{
 
 .button_full_width{
     margin-bottom: 2rem;
+}
+
+.button_form_user{
+    margin-top: 2rem;
+}
+
+.button_form_user button{
+    font-size: 2rem;
+}
+
+.button_form_user ion-icon{
+    font-size: 2.5rem;
+}
+
+.sidebar_user_green input{
+    border: .2rem solid #0fc70f;
+    background-color: #d4ffd4;
+}
+
+.button_form_user div{
+    width: 100%;
+    margin: 0 1rem 0 .3rem;
+}
+
+/* Estilos para las categorias */
+.tags_add_button{
+    border-bottom: .1rem solid #e12e13;
+    padding-bottom: 2rem;
+}
+
+.tags_content{
+    background-color: #fff9f8;
+}
+
+.tags{
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 17rem));
+}
+
+.tag{
+    padding: 1rem;
+    transition: .3s;
+    height: min-content;
+    border-radius: 1rem;
+}
+.tag_name{
+    font-size: 2.3rem;
+    font-family: "Oswald", sans-serif;
+}
+
+.tag_type{
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 1rem;
+}
+
+.tags_red input,
+.tags_red select{
+    border: solid .1rem #e12e13;
+    background-color: #fce3df;
 }
 
 @media(max-width: 81.25em){

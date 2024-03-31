@@ -1,18 +1,19 @@
 import React from "react";
 import SidebarBookForm from "./SidebarBookForm";
 import SidebarBookInfo from "./sidebarBookInfo";
-import RegistroLogin from "./RegistroLogin";
+import SidebarUserInfo from "./SidebarUserInfo";
 import UserProfileForm from "./UserProfileForm";
 import RightSidebarTagForm from "./RightSidebarTagForm";
+import useSidebar from "../hooks/useSidebar";
 
-export default function RightSidebar({setRightSidebar, rightSidebar, location}){
+export default function RightSidebar({ location, setUserChangeInfo}){
+
+    const { userChangeInfo, closeAll } = useSidebar();
+
     return(
-        <div className={`sidebar_right ${rightSidebar ? "" : "hidden"}`}>
-            <div className="sidebar_right_close" onClick={() => setRightSidebar(false)}>X</div>
-            {location == "/" && <SidebarBookInfo/>}
-            {location == "/libros" && <SidebarBookForm/>}
-            {location == "/cuenta" && <UserProfileForm/>}
-            {location == "/etiquetas" && <RightSidebarTagForm/>}
+        <div className={`sidebar_right ${(userChangeInfo) ? "" : "hidden"}`}>
+            <div className="sidebar_right_close" onClick={() => closeAll()}>X</div>
+            { userChangeInfo && <UserProfileForm/> }
         </div>
     )
 }

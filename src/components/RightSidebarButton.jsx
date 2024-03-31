@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-export default function RightSidebarButton({text, color, icon, whiteBG}){
+export default function RightSidebarButton({text, color, icon, whiteBG, disabled_btn}){
     const Button = styled.button`
         font-size: 2.5rem;
         background-color: transparent;
@@ -18,15 +18,15 @@ export default function RightSidebarButton({text, color, icon, whiteBG}){
 
     const Div = styled.div`
         border-radius: 1rem;
-        background-color: ${color};
-        border: .3rem solid ${color};
+        background-color: ${disabled_btn ? "grey" : color};
+        border: .3rem solid ${disabled_btn ? "grey" : color};
         display: flex;
         align-items: center;
         justify-content: center;
         transition: .3s;
         &:hover{
-            border: .3rem solid ${color};
-            background-color: ${color}20;
+            border: .3rem solid ${disabled_btn ? "grey" : color};
+            background-color: ${disabled_btn ? "#808080" : color}20;
             color: ${!whiteBG ? "white" : color};
         }
     `;
@@ -35,7 +35,7 @@ export default function RightSidebarButton({text, color, icon, whiteBG}){
         <div className="button_sidebar">
             <Div>
                 <ion-icon name={icon}></ion-icon>
-                <Button>{text}</Button>
+                <Button disabled={disabled_btn ? true : false}>{text}</Button>
             </Div>
         </div>
     )

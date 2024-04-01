@@ -5,6 +5,7 @@ import clienteAxios from "../../config/clienteAxios";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { isEmail } from "validator";
 
 export default function UserProfileForm(){
 
@@ -23,8 +24,11 @@ export default function UserProfileForm(){
         new_contrasena: ""
     })
 
+    const [ changeEmail, setChangeEmail ] = useState("");
+
     const [normalDataCargando, setNormalDataCargando] = useState(false);
     const [passwordDataCargando, setPasswordDataCargando] = useState(false);
+    const [mailDataCargando, setMailDataCargando] = useState(false);
 
     const changeDataUser = async e => {
         e.preventDefault();
@@ -47,11 +51,11 @@ export default function UserProfileForm(){
         }
         try{
             let token = Cookies.get("jwt2");
-            const respuesta = await clienteAxios.post(`/usuarios/changeData/${auth.id}?jwt=${token}`, {
+            const respuesta = await clienteAxios.patch(`/usuarios/changeData/${auth.id}?jwt=${token}`, {
                 nombre: changeData.nombre,
-                telefono: changeData.telefono,
                 domicilio: changeData.domicilio,
-                localidad: changeData.localidad
+                localidad: changeData.localidad,
+                telefono: changeData.telefono
             });
             setNormalDataCargando(false);
             setAuth(respuesta.data.data.user);
@@ -104,6 +108,22 @@ export default function UserProfileForm(){
             });
             return;
         }
+        if(changeContrasena.new_contrasena.length < 6){
+            setPasswordDataCargando(false);
+            Swal.fire({
+                icon: "warning",
+                title: "Advertencia",
+                text: "Las contraseñas deben tener al menos 6 caracteres",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            return;
+        }
         if(changeContrasena.contrasena_repetida != changeContrasena.new_contrasena){
             setPasswordDataCargando(false);
             Swal.fire({
@@ -122,7 +142,7 @@ export default function UserProfileForm(){
         }
         try{
             let token = Cookies.get("jwt2");
-            await clienteAxios.post(`/usuarios/changePassword/${auth.id}?jwt=${token}`, {
+            await clienteAxios.patch(`/usuarios/changePassword/${auth.id}?jwt=${token}`, {
                 contrasena: changeContrasena.contrasena,
                 new_contrasena: changeContrasena.new_contrasena,
                 contrasena_repetida: changeContrasena.contrasena_repetida
@@ -163,6 +183,78 @@ export default function UserProfileForm(){
         }
     }
 
+    const changeEmailUser = async e => {
+        e.preventDefault();
+        setMailDataCargando(true);
+        if(changeEmail.trim() == ""){
+            setMailDataCargando(false);
+            Swal.fire({
+                icon: "warning",
+                title: "Advertencia",
+                text: "Coloca el nuevo correo electronico",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            return;
+        }
+        if(!isEmail(changeEmail.trim())){
+            setMailDataCargando(false);
+            Swal.fire({
+                icon: "warning",
+                title: "Advertencia",
+                text: "El correo colocado no es valido",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    htmlContainer: "swal_text",
+                    icon: "swal_icon",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            return;
+        }
+        try{
+            let token = Cookies.get("jwt2");
+            await clienteAxios.patch(`/usuarios/changeEmail/${auth.id}?jwt=${token}`, {
+                correo_electronico: changeEmail
+            });
+            setMailDataCargando(false);
+            setChangeEmail("");
+            Swal.fire({
+                icon: "success",
+                title: "Correo Cambiada",
+                text: "Revisa el correo electronico que colocaste",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+
+        } catch(error){
+            setMailDataCargando(false);
+            Swal.fire({
+                icon: "warning",
+                title: "Algo salio mal",
+                text: error.response.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }
+    }
+
     return(
         <>
             <form onSubmit={e => changeDataUser(e)} className="sidebar_book_form">
@@ -187,11 +279,11 @@ export default function UserProfileForm(){
                     <RightSidebarButton text={normalDataCargando ? "Actualizando datos" : "Actualizar Datos"} color={"#0fc70f"} icon={"settings-sharp"} disabled_btn={normalDataCargando} whiteBG={false}/>
                 </div>    
             </form>
-            <form className="sidebar_book_form">
+            <form onSubmit={e => changeEmailUser(e)} className="sidebar_book_form">
                 <h2>Cambiar Correo</h2>
                 <div className="sidebar_book_form_group sidebar_user_green">
-                    <label>Nuevo correo electronico:</label>
-                    <input placeholder="Correo..." className="sidebar_book_input" name="titulo"/>
+                    <label htmlFor="email_change">Nuevo correo electronico:</label>
+                    <input id="email_change" onChange={e => setChangeEmail(e.target.value)} placeholder="Correo..." className="sidebar_book_input" name="email_cambiar"/>
                 </div>
                 <div className="button_form_user">
                     <RightSidebarButton text={"Actualizar Correo"} color={"#0fc70f"} icon={"settings-sharp"} whiteBG={false}/>

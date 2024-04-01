@@ -1655,7 +1655,8 @@ body{
     font-family: "Lato", sans-serif;
 }
 
-.swal_confirm{
+.swal_confirm,
+.swal2-cancel{
     font-size: 1.5rem !important;
 }
 
@@ -1666,6 +1667,45 @@ body{
 
 .swal_icon{
     font-size: 1.5rem !important;
+}
+
+.recover_h2{
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 2rem;
+}
+
+.lost_passwd{
+    width: auto;
+    display: flex;
+    margin: 2rem 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: "Lato", sans-serif;
+}
+.lost_passwd p{
+    margin-right: 1rem;
+    font-weight: 600;
+}
+
+.lost_passwd button{
+    background-color: white;
+    outline: none;
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    transition: .3s;
+    font-weight: 700;
+}
+
+.lost_passwd button:hover{
+    box-shadow: 1px 1px 12px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px 1px 12px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 12px -9px rgba(0,0,0,0.75);
+    background-color: #2196f3;
+    transform: scale(1.05) translateY(-.1rem);
 }
 
 /* Spinner */
@@ -1990,5 +2030,11 @@ body{
     }
     .user_manager_users{
         grid-template-columns: 1fr;
+    }
+    .lost_passwd{
+        flex-direction: column;
+    }
+    .lost_passwd p{
+        margin: 0 0 1rem 0;
     }
 }

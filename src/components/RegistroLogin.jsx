@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import RightSidebarButton from "./RightSidebarButton";
 import clienteAxios from "../../config/clienteAxios";
@@ -29,9 +29,79 @@ export default function RegistroLogin(){
         contrasena_login: ""
     })
 
+    const [restorePasswordForm, setRestorePasswordForm] = useState(false);
+
     const createCookie = token => {
         Cookies.set("jwt2", token, { expires: 15 });
     }
+
+    const sendForgotRequest = async mail => {
+        try{
+            await clienteAxios.patch(`/usuarios/forgotPassword`, {
+                correo_electronico: mail
+            });
+            Swal.fire({
+                icon: "success",
+                title: "Correo enviado",
+                text: "Revisa tu correo electronico para recibir instrucciones.",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }catch(error){
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Algo salio mal",
+                text: error.response.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }
+    }
+
+    useEffect(() => {
+        const contrasena_olvidada = async () => {
+            if(restorePasswordForm){
+                Swal.fire({
+                    title: "Coloca el correo electronico a recuperar",
+                    input: "text",
+                    inputAttributes: {
+                      autocapitalize: "off"
+                    },
+                    customClass: {
+                        title: "swal_title",
+                        icon: "swal_icon",
+                        htmlContainer: "swal_text",
+                        confirmButton: "swal_confirm"
+                    },
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Recuperar cuenta",
+                    allowOutsideClick: () => !Swal.isLoading()
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        setRestorePasswordForm(false);
+                        sendForgotRequest(result.value)
+                    }
+                    if(result.dismiss){
+                        setRestorePasswordForm(false);
+                    }
+                  });
+              }
+        }
+        contrasena_olvidada();
+    }, [restorePasswordForm])
+    
 
     const register = async e => {
         e.preventDefault();
@@ -138,7 +208,8 @@ export default function RegistroLogin(){
                     title: "swal_title",
                     icon: "swal_icon",
                     htmlContainer: "swal_text",
-                    confirmButton: "swal_confirm"
+                    confirmButton: "swal_confirm",
+                    cancelButton: "swal_confirm"
                 }
             });
         }
@@ -206,7 +277,7 @@ export default function RegistroLogin(){
             Swal.fire({
                 icon: "warning",
                 title: "Algo salio mal",
-                text: error.response.data.message,
+                text: error,
                 showConfirmButton: true,
                 customClass: {
                     title: "swal_title",
@@ -237,6 +308,10 @@ export default function RegistroLogin(){
                     </div>
                     <div className="button_margin">
                         <RightSidebarButton text={cargando ? "Validando" : "Iniciar Sesion"} disabled_btn={cargando ? true : false} icon={"log-in"} color={"#2196f3"} whiteBG={true}/>
+                    </div>
+                    <div className="lost_passwd">
+                        <p>No recuerdas tu contraseña?: </p>
+                        <button onClick={() => setRestorePasswordForm(true)} type={"button"}>Recuperar contraseña</button>
                     </div>
                 </form>}
                 {!logIn && <form onSubmit={e => register(e)} className={`register`}>

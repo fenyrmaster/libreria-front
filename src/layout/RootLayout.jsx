@@ -109,12 +109,12 @@ export default function RootLayout(){
                                 </Link>
                             </li> }
                         </div>
-                        <div onClick={() => cerrarSesion()} className="bottom">
+                        { Object.keys(auth).length != 0 && <div onClick={() => cerrarSesion()} className="bottom">
                             <li className="bottom_container">
                                 <div className="icon"><ion-icon name="log-out-outline"></ion-icon></div>
                                 <div className="text">Cerrar Sesion</div>
                             </li>
-                        </div></> }
+                        </div>}</> }
                     </ul>
                 </div>
                 <div className="content_container">
@@ -126,7 +126,7 @@ export default function RootLayout(){
                             <input className="search_bar" type={"text"} placeholder={"Busca por nombre de libros..."} name={"bookName"}/>
                             <button type="submit" className="main_content_search_bar_button"><ion-icon name="search-outline"></ion-icon></button>
                         </form>
-                        <Link className="main_content_user" style={{textDecoration: "none"}}>
+                        <Link to={"/cuenta"} className="main_content_user" style={{textDecoration: "none"}}>
                             <h3 className="username">Brandon Yahir</h3>
                             <div className="user_img">
                                 <img src={defaultAvatar}/>

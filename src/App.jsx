@@ -10,7 +10,9 @@ import UserManagerPage from "./components/UserManagerPage"
 import PrestamosAdminPage from "./components/PrestamosAdminPage"
 import ConfirmCuenta from "./components/confirmAccount"
 import { AuthProvider } from "./context/AuthProvider";
+import ResetPassword from "./components/ResetPassword"
 import { RightSidebarProvider } from "./context/SidebarProvider" 
+import ConfirmMailChange from "./components/confirmMailChange"
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
               <Route path='usuarios' element={<UserManagerPage/>}/>
               <Route path='gestion-prestamos' element={<PrestamosAdminPage/>}/>
               <Route path='confirmarCuenta/:codigo' element={<ConfirmCuenta/>}/>
+              <Route path='correoCambiado/:codigo' element={<ConfirmMailChange/>}/>
+              <Route path='recuperar/:codigo' element={<ResetPassword/>}/>
             </Route>
           </Routes>
         </RightSidebarProvider>

@@ -9,6 +9,9 @@ const RightSidebarContext = createContext();
 
 const RightSidebarProvider = ({ children }) => {
     const [ userChangeInfo, setUserChangeInfo ] = useState(false);
+    const [ userSidebar, setUserSidebar ] = useState(false);
+    const [ userManagerReload, setUserManagerReload ] = useState(false);
+    const [ userManage, setUserManage ] = useState({});
 
     const navigate = useNavigate();
 
@@ -22,17 +25,28 @@ const RightSidebarProvider = ({ children }) => {
 
     const changeSidebar = choice => {
         setUserChangeInfo(false);
+        setUserSidebar(false);
+        setUserManage({});
 
         choice == "userInfo" && setUserChangeInfo(true);
+        choice == "userData" && setUserSidebar(true);
     }
 
     const closeAll = () => {
         setUserChangeInfo(false);
+        setUserSidebar(false);
+        setUserManage({});
     }
 
     return(
         <RightSidebarContext.Provider value={{
             userChangeInfo,
+            userManage,
+            userSidebar,
+            userManagerReload,
+            setUserManage,
+            setUserManagerReload,
+            setUserSidebar,
             setUserChangeInfo,
             changeSidebar,
             closeAll

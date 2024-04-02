@@ -273,11 +273,10 @@ export default function RegistroLogin(){
             });
         }catch(error){
             setCargando(false);
-            console.log(error);
             Swal.fire({
                 icon: "warning",
                 title: "Algo salio mal",
-                text: error,
+                text: error.response.data.message,
                 showConfirmButton: true,
                 customClass: {
                     title: "swal_title",

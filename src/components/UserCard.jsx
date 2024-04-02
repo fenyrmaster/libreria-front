@@ -1,16 +1,20 @@
 import React from "react";
+import useSidebar from "../hooks/useSidebar";
 import defaultAvatar from "../assets/default-avatar.jpg"
 
-export default function UserCard(){
+export default function UserCard({user}){
+
+    const { setUserManage, changeSidebar, userManage, setUserChangeInfo } = useSidebar();
+
     return(
-        <div className="user_card_content">
+        <div onClick={() => {changeSidebar("userData"); setUserManage(user);}} className={`user_card_content ${userManage?.id == user.id && "user_card_active"} ${!user?.active && "disabled_user"}`}>
             <div className="user_card_image">
-                <img src={defaultAvatar}/>
+                <img src={user.image == null ? defaultAvatar : user.image}/>
             </div>
             <div className="user_card_data">
-                <h2 className="user_card_data_name">Castañeda Godinez Brandon Yahir</h2>
-                <p className="user_card_data_email">testyes1234@gmail.com</p>
-                <p className="user_card_data_number">124236235435432</p>
+                <h2 className="user_card_data_name">{user.nombre}</h2>
+                <p className="user_card_data_email">{user.correo_electronico}</p>
+                <p className="user_card_data_number">{user.id}</p>
             </div>
         </div>
     )

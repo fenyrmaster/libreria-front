@@ -327,6 +327,7 @@ body{
 
 .main_content_user{
     display: flex;
+    height: 8.1rem;
     align-items: center;
     border-left: .1rem solid rgb(146, 146, 146);
     padding: .5rem 2rem .5rem 2rem;
@@ -414,6 +415,7 @@ body{
     height: 100%;
     background-color: #212322;
     transition: .5s;
+    z-index: 200;
 }
 
 .book_content{
@@ -426,6 +428,11 @@ body{
     -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
     overflow: hidden;
+}
+
+.sidebar_user_info_disabled h4{
+    color: rgb(211, 0, 0);
+    font-weight: 600 !important;
 }
 
 .book_content_skyblue{
@@ -1384,6 +1391,10 @@ body{
     margin-bottom: 3rem;
 }
 
+.sidebar_user_info_img img{
+    width: 100%;
+}
+
 .sidebar_user_info_content{
     color: rgb(223, 223, 223);
 }
@@ -1496,12 +1507,12 @@ body{
     .sidebar{
         position: fixed;
         left: 0;
-        z-index: 100;
+        z-index: 300;
         backdrop-filter: blur(5px);
     }
     .sidebar_filter{
         position: fixed;
-        z-index: 50;
+        z-index: 250;
         top: 0;
         left: 0;
         width: 100%;
@@ -1549,6 +1560,10 @@ body{
     .sidebar_close:hover{
         color: white;
         background-color: #212322;
+    }
+
+    .user_data_img{
+        width: 33rem;
     }
 
     .link_container .text,
@@ -1708,6 +1723,72 @@ body{
     transform: scale(1.05) translateY(-.1rem);
 }
 
+.user_data_img_box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_data_change{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: "Oswald", sans-serif;
+    cursor: pointer;
+    z-index: 100;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    visibility: hidden;
+}
+
+.user_data_img_box:hover .user_data_img{
+    filter: brightness(40%);
+}
+.user_data_img_box:hover .user_data_change{
+    visibility: visible;
+}
+
+.swal2-x-mark-line-right, .swal2-x-mark-line-left {
+    font-size: 15px !important;
+} 
+
+.swal2-success-line-tip, .swal2-success-line-long {
+font-size: 15px !important;
+}
+
+.no_users_alert{
+    font-size: 2.5rem;
+    margin: 1rem;
+    padding: 1rem 0rem;
+    background-color: #b145e9;
+    border-radius: 2rem;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+}
+
+.user_card_active{
+    background-color: #b145e9 !important;
+}
+
+.user_card_active:hover{
+    background-color: #b145e9;
+}
+
+.disabled_user,
+.disabled_user:hover{
+    background-color: red;
+}
+
 /* Spinner */
 .sk-circle {
     margin: 100px auto;
@@ -1849,6 +1930,15 @@ body{
       transform: scale(1); } }
 
 /* Media queries para sidebar de libro*/
+@media(max-width: 75em){
+    .user_data_img{
+        filter: brightness(40%);
+    }
+    .user_data_change{
+        visibility: visible;
+    }
+}
+
 @media(max-width: 59.375em){
     .sidebar_book_image img{
         height: 100%;

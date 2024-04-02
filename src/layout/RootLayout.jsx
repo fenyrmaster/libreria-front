@@ -9,6 +9,7 @@ import defaultAvatar from "../assets/default-avatar.jpg"
 import RightSidebar from "../components/RightSidebar";
 import Spinner from "../components/Spinner";
 import useAuth from "../hooks/useAuth";
+import useSidebar from "../hooks/useSidebar";
 
 export default function RootLayout(){
     let location = useLocation();
@@ -17,6 +18,7 @@ export default function RootLayout(){
     const [sidebar, setSidebar] = useState(false);
 
     const { cargando, auth, setAuth } = useAuth();
+    const { closeAll } = useSidebar();
     const navigate = useNavigate();
 
     const cerrarSesion = async () => {
@@ -109,7 +111,7 @@ export default function RootLayout(){
                                 </Link>
                             </li> }
                         </div>
-                        { Object.keys(auth).length != 0 && <div onClick={() => cerrarSesion()} className="bottom">
+                        { Object.keys(auth).length != 0 && <div onClick={() => {cerrarSesion(); closeAll();}} className="bottom">
                             <li className="bottom_container">
                                 <div className="icon"><ion-icon name="log-out-outline"></ion-icon></div>
                                 <div className="text">Cerrar Sesion</div>
@@ -126,12 +128,15 @@ export default function RootLayout(){
                             <input className="search_bar" type={"text"} placeholder={"Busca por nombre de libros..."} name={"bookName"}/>
                             <button type="submit" className="main_content_search_bar_button"><ion-icon name="search-outline"></ion-icon></button>
                         </form>
-                        <Link to={"/cuenta"} className="main_content_user" style={{textDecoration: "none"}}>
-                            <h3 className="username">Brandon Yahir</h3>
+                        { Object.keys(auth).length != 0 ? <Link to={"/cuenta"} className="main_content_user" style={{textDecoration: "none"}}>
+                            <h3 className="username">{auth?.nombre?.split(" ")[0]}</h3>
                             <div className="user_img">
-                                <img src={defaultAvatar}/>
+                                <img src={auth.image == null ? defaultAvatar : auth.image}/>
                             </div>
-                        </Link>
+                        </Link> : 
+                        <Link to={"/iniciar-sesion"} className="main_content_user" style={{textDecoration: "none"}}>
+                            <h3 className="username">Iniciar Sesion</h3>
+                        </Link> }
                     </header>
                     <div className="page">
                         <div className={`sidebar_filter ${sidebar ? "" : "hidden"}`}></div>

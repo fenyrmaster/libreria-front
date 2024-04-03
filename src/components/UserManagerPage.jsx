@@ -56,6 +56,20 @@ export default function UserManagerPage(){
                 }
             });
             navigate("/iniciar-sesion");
+        } else if(auth.rol != "Administrador"){
+            Swal.fire({
+                icon: "error",
+                title: "Sin permiso",
+                text: "Solo los administradores tienen acceso a este sitio",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            navigate("/");
         }
     }, []);
 

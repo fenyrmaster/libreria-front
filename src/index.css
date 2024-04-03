@@ -1789,6 +1789,10 @@ font-size: 15px !important;
     background-color: red;
 }
 
+.alert_red{
+    background-color: #e12e13 !important;
+}
+
 /* Spinner */
 .sk-circle {
     margin: 100px auto;

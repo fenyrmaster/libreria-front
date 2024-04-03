@@ -82,7 +82,7 @@ export default function SidebarUserInfo(){
                 </div>
                 <div className="sidebar_user_info_group">
                     <h4>Direccion:</h4>
-                    <p>{userManage?.direccion}</p>
+                    <p>{userManage?.domicilio}</p>
                 </div>
                 <div className="sidebar_user_info_group">
                     <h4>Telefono:</h4>

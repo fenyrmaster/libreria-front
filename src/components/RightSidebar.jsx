@@ -8,14 +8,16 @@ import useSidebar from "../hooks/useSidebar";
 
 export default function RightSidebar({ location, setUserChangeInfo}){
 
-    const { userChangeInfo, closeAll, userSidebar, etiquetaForm } = useSidebar();
+    const { userChangeInfo, closeAll, userSidebar, etiquetaForm, bookForm, bookShowOption } = useSidebar();
 
     return(
-        <div className={`sidebar_right ${(userChangeInfo || userSidebar || etiquetaForm) ? "" : "hidden"}`}>
+        <div className={`sidebar_right ${(userChangeInfo || userSidebar || etiquetaForm || bookForm || bookShowOption) ? "" : "hidden"}`}>
             <div className="sidebar_right_close" onClick={() => closeAll()}>X</div>
             { userChangeInfo && <UserProfileForm/> }
             { userSidebar && <SidebarUserInfo/> }
             { etiquetaForm && <RightSidebarTagForm/> }
+            { bookForm && <SidebarBookForm/> }
+            { bookShowOption && <SidebarBookInfo/> }
         </div>
     )
 }

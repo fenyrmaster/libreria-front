@@ -10,10 +10,9 @@ import Spinner from "./Spinner";
 export default function TagsAdmin(){
 
     const { auth } = useAuth();
-    const { changeSidebar, etiquetasManagerReload, setEtiquetasManagerReload } = useSidebar();
+    const { changeSidebar, etiquetasManagerReload, setEtiquetasManagerReload, setTagsBookFormLoad } = useSidebar();
 
     const [ etiquetas, setEtiquetas ] = useState([]);
-    const [ deleteEtiqueta, setDeleteEtiqueta ] = useState("");
     const [ cargando, setCargando ] = useState(false);
 
     const cargarEtiquetas = async () => {
@@ -27,6 +26,7 @@ export default function TagsAdmin(){
         try{
             const respuesta = await clienteAxios.delete(`/etiquetas/${id}`);
             setEtiquetasManagerReload(true);
+            setTagsBookFormLoad(true);
             Swal.fire({
                 icon: "success",
                 title: "Etiqueta eliminada",

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 export default function RightSidebarTagForm(){
 
-    const { etiquetaFormData, setEtiquetaFormData, setEtiquetasManagerReload } = useSidebar();
+    const { etiquetaFormData, setEtiquetaFormData, setEtiquetasManagerReload, setTagsBookFormLoad } = useSidebar();
     const [ cargando, setCargando ] = useState(false);
 
     const gestionarEtiqueta = async e => {
@@ -42,6 +42,7 @@ export default function RightSidebarTagForm(){
                     tipo: "Categoria"
                 });
                 setEtiquetasManagerReload(true);
+                setTagsBookFormLoad(true);
                 Swal.fire({
                     icon: "success",
                     title: "Etiqueta agregada",
@@ -66,6 +67,7 @@ export default function RightSidebarTagForm(){
                     tipo: "Categoria"
                 });
                 setEtiquetasManagerReload(true);
+                setTagsBookFormLoad(true);
                 Swal.fire({
                     icon: "success",
                     title: "Etiqueta modificada",

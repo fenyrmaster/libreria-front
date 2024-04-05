@@ -450,14 +450,11 @@ body{
 
 .book_add{
     display: flex;
-    position: absolute;
     cursor: pointer;
-    top: 15%;
     outline: none;
-    border: .1rem white solid;
-    background-color: #212322;
-    color: white;
-    right: -1%;
+    border: .1rem black solid;
+    background-color: #1EEAC8;
+    color: black;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -575,16 +572,13 @@ body{
 
 .book_image{
     border-radius: .5rem;
-    width: 90%;
+    width: 15rem;
+    height: 20rem;
 }
 
 .book_categorias{
-    display: flex;
-    font-size: 1rem;
-}
-
-.book_categorias{
-    font-size: 2rem;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
     width: 100%;
@@ -627,7 +621,7 @@ body{
 }
 .sidebar_book_image img{
     width: 22rem;
-    height: 100%;
+    height: 30rem;
 }
 .sidebar_book_title{
     color: white;
@@ -651,6 +645,7 @@ body{
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
     font-family: "Oswald", sans-serif;
     color: rgb(236, 236, 236);
     margin: 2rem 0;
@@ -1791,6 +1786,59 @@ font-size: 15px !important;
 
 .alert_red{
     background-color: #e12e13 !important;
+}
+
+.alert_skyblue{
+    background-color: #1EEAC8 !important;
+}
+
+.tag_book_form{
+    background-color: #004237;
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
+    color: rgb(144, 181, 167);
+    cursor: pointer;
+    border-radius: 1rem;
+    padding: .5rem .7rem;
+    margin: .6rem .5rem;
+}
+
+.sidebar_book_form_tags_h4{
+    font-size: 2rem;
+    font-family: "Oswald", sans-serif;
+    color: white;
+}
+
+.sidebar_book_form_tags_group{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.tag_book_form_selected{
+    background-color: #1EEAC8;
+    color: black;
+    font-weight: 700;
+}
+
+.alert_orange{
+    background-color: #EBA400;
+}
+
+.book_sidebar_categoria{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem .8rem;
+    font-size: 1.2rem;
+    height: min-content;
+    margin: 1.5rem 0;
+}
+
+.book_sidebar_categorias_content{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 /* Spinner */

@@ -9,16 +9,38 @@ const RightSidebarContext = createContext();
 
 const RightSidebarProvider = ({ children }) => {
     const [ userChangeInfo, setUserChangeInfo ] = useState(false);
+    const [ bookShow, setBookShow ] = useState({});
+    const [ bookShowOption, setBookShowOption ] = useState(false);
     const [ userSidebar, setUserSidebar ] = useState(false);
     const [ userManagerReload, setUserManagerReload ] = useState(false);
+    const [ bookManagerReload, setBookManagerReload ] = useState(false);
     const [ etiquetasManagerReload, setEtiquetasManagerReload ] = useState(false);
     const [ etiquetaForm, setEtiquetaForm ] = useState(false);
     const [ userManage, setUserManage ] = useState({});
+    const [ bookForm, setBookForm ] = useState(false);
+    const [ tagsBookFormLoad, setTagsBookFormLoad ] = useState(true);
     const [ etiquetaFormData, setEtiquetaFormData ] = useState({
         id: "",
         nombre: "",
         tipo: "Categoria"
+    });
+    const [ bookFormData, setBookFormData ] = useState({
+        id: "",
+        titulo: "",
+        sinopsis: "",
+        stock: 0,
+        edicion: "",
+        autores: "",
+        fecha_publicacion: "",
+        paginas: 0,
+        imagen_portada: null
     })
+    const [ tagsBookFormSelected, setTagsBookFormSelected ] = useState([]);
+    const [ filterBooks, setFilterBooks ] = useState({
+        titulo: "",
+        categoria: "",
+        autores: ""
+    });
 
     const navigate = useNavigate();
 
@@ -34,16 +56,34 @@ const RightSidebarProvider = ({ children }) => {
         setUserChangeInfo(false);
         setUserSidebar(false);
         setEtiquetaForm(false);
+        setBookForm(false);
         setUserManage({});
+        setBookShow({});
+        setBookShowOption(false);
+        setTagsBookFormSelected([]);
         setEtiquetaFormData({
             id: "",
             nombre: "",
             tipo: "Categoria"
         });
+        setBookFormData({
+            id: "",
+            titulo: "",
+            sinopsis: "",
+            stock: 0,
+            edicion: "",
+            autores: "",
+            editorial: "",
+            fecha_publicacion: "",
+            paginas: 0,
+            imagen_portada: null
+        })
 
         choice == "userInfo" && setUserChangeInfo(true);
         choice == "userData" && setUserSidebar(true);
         choice == "etiquetaForm" && setEtiquetaForm(true);
+        choice == "bookForm" && setBookForm(true);
+        choice == "bookShow" && setBookShowOption(true);
     }
 
     const closeAll = () => {
@@ -51,11 +91,27 @@ const RightSidebarProvider = ({ children }) => {
         setUserSidebar(false);
         setEtiquetaForm(false);
         setUserManage({});
+        setBookForm(false);
+        setBookShow({});
+        setBookShowOption(false);
+        setTagsBookFormSelected([]);
         setEtiquetaFormData({
             id: "",
             nombre: "",
             tipo: "Categoria"
         });
+        setBookFormData({
+            id: "",
+            titulo: "",
+            sinopsis: "",
+            stock: 0,
+            edicion: "",
+            autores: "",
+            editorial: "",
+            fecha_publicacion: "",
+            paginas: 0,
+            imagen_portada: null
+        })
     }
 
     return(
@@ -67,7 +123,23 @@ const RightSidebarProvider = ({ children }) => {
             etiquetaForm,
             etiquetaFormData,
             etiquetasManagerReload,
+            bookForm,
+            tagsBookFormLoad,
+            tagsBookFormSelected,
+            bookFormData,
+            bookManagerReload,
+            filterBooks,
+            bookShow,
+            bookShowOption,
+            setBookShowOption,
+            setBookShow,
+            setFilterBooks,
+            setBookManagerReload,
+            setBookFormData,
+            setTagsBookFormSelected,
+            setTagsBookFormLoad,
             setEtiquetasManagerReload,
+            setBookForm,
             setUserManage,
             setUserManagerReload,
             setUserSidebar,

@@ -1,11 +1,125 @@
-import React from "react";
+import React, { useState } from "react";
 import bookExample from "../assets/book_example.png"
 import RightSidebarButton from "./RightSidebarButton";
 import useSidebar from "../hooks/useSidebar";
+import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth"
+import { useNavigate } from "react-router-dom";
+import clienteAxios from "../../config/clienteAxios";
 
 export default function SidebarBookInfo(){
 
-    const { bookShow } = useSidebar();
+    const { bookShow, setBookShow } = useSidebar();
+    const { auth } = useAuth();
+    const [ cargando, setCargando ] = useState(false);
+    const navigate = useNavigate();
+
+    const solicitarBook = async () => {
+        try{
+            setCargando(true);
+            const respuesta = await clienteAxios.post("/prestamos", {
+                bookId: bookShow.id
+            });
+            setCargando(false);
+            setBookShow({ ...bookShow, stock: bookShow.stock-1 });
+            Swal.fire({
+                icon: "success",
+                title: "Reserva confirmada",
+                text: respuesta.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        } catch(error){
+            setCargando(false);
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Algo salio mal",
+                text: error.response.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }
+    }
+
+    const preguntarSolicitud = () => {
+        if(!auth?.id){
+            navigate("/iniciar-sesion");
+            Swal.fire({
+                icon: "error",
+                title: "Inicia Sesion",
+                text: "Se necesita una cuenta para realizar pedidos",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            return;
+        }
+        if(bookShow.stock < 1){
+            Swal.fire({
+                icon: "error",
+                title: "Solo clientes",
+                text: "Este libro esta agotado, intenta mas tarde",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });  
+            return;
+        }
+        if(auth?.rol != "Cliente"){
+            Swal.fire({
+                icon: "error",
+                title: "Solo clientes",
+                text: "Los administradores no pueden realizar pedidos",
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: "Solicitar Libro",
+            icon: "question",
+            text: `Estas seguro de que deseas solicitar el libro '${bookShow.titulo}'`,
+            customClass: {
+                title: "swal_title",
+                icon: "swal_icon",
+                htmlContainer: "swal_text",
+                confirmButton: "swal_confirm"
+            },
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Reservar",
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+                solicitarBook();
+            }
+        });
+    }
 
     return(
         <>
@@ -35,7 +149,9 @@ export default function SidebarBookInfo(){
             <p className="sidebar_book_sinopsis">{bookShow.sinopsis}</p>
 
             <p className="sidebar_book_stock">{bookShow.stock} Disponibles</p>
-            <RightSidebarButton text={"Reservar"} color={"#ffa117"} icon={"push"}/>
+            <div onClick={() => preguntarSolicitud()}>
+                <RightSidebarButton disabled_btn={cargando} text={cargando ? "Reservando..." : "Reservar"} color={"#ffa117"} icon={"push"}/>
+            </div>
         </>
     )
 }

@@ -553,8 +553,26 @@ body{
     transition: .3s;
 }
 
+.prestamo_libro .book img{
+    height: 16rem;
+}
+
+.prestamo_clientes .book img{
+    height: 18rem;
+}
+
 .book_blue .book_categoria{
     background-color: #1EEAC8;
+}
+
+.book_selected,
+.book_selected:hover{
+    background-color: #ffa217 !important;
+}
+
+.book_blue.book_selected,
+.book_blue.book_selected:hover{
+    background-color: #1EEAC8 !important;
 }
 
 .book:hover,
@@ -1322,6 +1340,10 @@ body{
 .user_manager_group input:focus{
     border: .1rem solid #b145e9;
     background-color: #ffffff;
+}
+
+.agotado{
+    color: red;
 }
 
 /* Estilos para gestor de usuarios */

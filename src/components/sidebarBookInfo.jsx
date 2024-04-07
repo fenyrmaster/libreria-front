@@ -148,7 +148,7 @@ export default function SidebarBookInfo(){
             </div>
             <p className="sidebar_book_sinopsis">{bookShow.sinopsis}</p>
 
-            <p className="sidebar_book_stock">{bookShow.stock} Disponibles</p>
+            <p className={bookShow.stock > 0 ? "sidebar_book_stock" : "sidebar_book_stock agotado"}>{bookShow.stock > 0 ? `${bookShow.stock} Disponibles` : `Agotado`}</p>
             <div onClick={() => preguntarSolicitud()}>
                 <RightSidebarButton disabled_btn={cargando} text={cargando ? "Reservando..." : "Reservar"} color={"#ffa117"} icon={"push"}/>
             </div>

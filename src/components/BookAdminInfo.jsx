@@ -15,7 +15,7 @@ export default function BookAdminInfo({book, deleteEtiquetaFn}){
 
     return(
         <div className="adminInfo">
-            <p className="adminInfo_stock">Stock: {book?.stock}</p>
+            <p className={book?.stock > 0 ? "adminInfo_stock" : "adminInfo_stock agotado"}>{book?.stock > 0 ? `Stock: ${book?.stock}` : "Agotado"}</p>
             <div className="adminInfo_acciones">
                 <button onClick={() => {changeSidebar("bookForm"); retrieveIds(); setBookFormData({ id: book.id, titulo: book.titulo, sinopsis: book.sinopsis, stock: book.stock, edicion: book.edicion, autores: book.autores, editorial: book.editorial, fecha_publicacion: book.fecha_publicacion.split("T")[0], paginas: book.paginas, imagen_portada: null})}} className="adminInfo_acciones_editar">Editar</button>
                 <button onClick={() => deleteEtiquetaFn(book.id, book.titulo)} className="adminInfo_acciones_eliminar">Eliminar</button>

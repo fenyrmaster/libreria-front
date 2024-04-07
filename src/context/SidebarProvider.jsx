@@ -13,10 +13,12 @@ const RightSidebarProvider = ({ children }) => {
     const [ bookShowOption, setBookShowOption ] = useState(false);
     const [ userSidebar, setUserSidebar ] = useState(false);
     const [ userManagerReload, setUserManagerReload ] = useState(false);
+    const [ bookSelectedId, setBookSelectedId ] = useState("");
     const [ bookManagerReload, setBookManagerReload ] = useState(false);
     const [ etiquetasManagerReload, setEtiquetasManagerReload ] = useState(false);
     const [ etiquetaForm, setEtiquetaForm ] = useState(false);
     const [ userManage, setUserManage ] = useState({});
+    const [ prestamoManagerReload, setPrestamoManagerReload ] = useState(false);
     const [ bookForm, setBookForm ] = useState(false);
     const [ tagsBookFormLoad, setTagsBookFormLoad ] = useState(true);
     const [ etiquetaFormData, setEtiquetaFormData ] = useState({
@@ -24,6 +26,10 @@ const RightSidebarProvider = ({ children }) => {
         nombre: "",
         tipo: "Categoria"
     });
+    const [ prestamoFilterData, setPrestamoFilterData ] = useState({
+        nombre: "",
+        estado: ""
+    })
     const [ bookFormData, setBookFormData ] = useState({
         id: "",
         titulo: "",
@@ -78,6 +84,17 @@ const RightSidebarProvider = ({ children }) => {
             paginas: 0,
             imagen_portada: null
         })
+        
+        setBookSelectedId("");
+        setPrestamoFilterData({
+            nombre: "",
+            estado: ""
+        });
+        setFilterBooks({
+            titulo: "",
+            categoria: "",
+            autores: ""
+        })
 
         choice == "userInfo" && setUserChangeInfo(true);
         choice == "userData" && setUserSidebar(true);
@@ -94,6 +111,7 @@ const RightSidebarProvider = ({ children }) => {
         setBookForm(false);
         setBookShow({});
         setBookShowOption(false);
+        setBookSelectedId("");
         setTagsBookFormSelected([]);
         setEtiquetaFormData({
             id: "",
@@ -111,6 +129,16 @@ const RightSidebarProvider = ({ children }) => {
             fecha_publicacion: "",
             paginas: 0,
             imagen_portada: null
+        });
+        setBookSelectedId("");
+        setPrestamoFilterData({
+            nombre: "",
+            estado: ""
+        });
+        setFilterBooks({
+            titulo: "",
+            categoria: "",
+            autores: ""
         })
     }
 
@@ -131,6 +159,12 @@ const RightSidebarProvider = ({ children }) => {
             filterBooks,
             bookShow,
             bookShowOption,
+            bookSelectedId,
+            prestamoManagerReload,
+            prestamoFilterData,
+            setBookSelectedId,
+            setPrestamoManagerReload,
+            setPrestamoFilterData,
             setBookShowOption,
             setBookShow,
             setFilterBooks,

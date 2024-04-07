@@ -71,6 +71,10 @@ export default function UserManagerPage(){
             });
             navigate("/");
         }
+        setUserFilters({
+            nombre: "",
+            correo_electronico: ""
+        })
     }, []);
 
     return(

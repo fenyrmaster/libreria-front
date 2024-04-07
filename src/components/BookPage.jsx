@@ -7,18 +7,23 @@ import Spinner from "./Spinner";
 
 export default function BookPage(){
 
-    const { bookManagerReload, setBookManagerReload, filterBooks } = useSidebar();
+    const { bookManagerReload, setBookManagerReload, filterBooks, setFilterBooks } = useSidebar();
     const [ cargando, setCargando ] = useState(false);
     const [ books, setBooks ] = useState([]);
 
     const cargarLibros = async () => {
         setCargando(true);
-        const libros = await clienteAxios.post("/libros/get-all", filterBooks);
+        const libros = await clienteAxios.post("/libros/get-all?stockout=false", filterBooks);
         setBooks(libros.data.libros);
         setCargando(false);
     }
 
     useEffect(() => {
+        setFilterBooks({
+            titulo: "",
+            categoria: "",
+            autores: ""
+        });
         cargarLibros();
     }, []);
 

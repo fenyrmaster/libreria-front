@@ -49,7 +49,7 @@ export default function PrestamosPage(){
                     confirmButton: "swal_confirm"
                 }
             });
-            navigate("/");
+            navigate("/libros");
         }
         setPrestamoFilterData({
             nombre: "",

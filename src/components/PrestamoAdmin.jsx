@@ -3,7 +3,7 @@ import { useState } from "react";
 import Book from "./Book";
 import useSidebar from "../hooks/useSidebar";
 
-export default function PrestamoAdmin({estado, prestamo, cancelPrestamo, recogidoPrestamo}){
+export default function PrestamoAdmin({estado, prestamo, cancelPrestamo, recogidoPrestamo, devueltoPrestamo, noDevueltoPrestamo, eliminarPrestamo}){
 
     const { changeSidebar, setUserManage } = useSidebar();
 
@@ -46,7 +46,7 @@ export default function PrestamoAdmin({estado, prestamo, cancelPrestamo, recogid
                     <p className="prestamo_descripcion">El usuario devolvio el libro el <span>{new Date(prestamo.fecha_entrega.split("T")[0]).toLocaleDateString("es-MX", {timeZone: "Europe/London"})}</span>, no olvides ser amable!</p>
                 </div> 
                 }
-                { estado == "Sin_devolver"
+                { estado == "No Devuelto"
                 &&<div className="prestamo_info_desc">
                     <h3 className="prestamo_texto">Libro no devuelto</h3>
                     <p className="prestamo_descripcion">El usuario no devolvio el libro con limite de <span>{new Date(prestamo.fecha_entrega.split("T")[0]).toLocaleDateString("es-MX", {timeZone: "Europe/London"})}</span>, contacta al usuario</p>
@@ -62,15 +62,15 @@ export default function PrestamoAdmin({estado, prestamo, cancelPrestamo, recogid
                 <p className="prestamo_libro_texto">Libro:</p>
                 <Book book={prestamo.libro} admin={false}/>
             </div>
-            { (estado == "No Devuelto" || estado == "Devuelto" || estado == "Cancelado") && <form className="cancelar_pedido_button"><button className="adminInfo_acciones_eliminar admin_pedidos">Eliminar Pedido</button></form> }
+            { (estado == "No Devuelto" || estado == "Devuelto" || estado == "Cancelado") && <form onSubmit={(e => eliminarPrestamo(prestamo.id, prestamo.libro.titulo, e, prestamo.nombre))} className="cancelar_pedido_button"><button className="adminInfo_acciones_eliminar admin_pedidos">Eliminar Prestamo</button></form> }
             { estado == "Reservado" && <div className="adminInfo_acciones admin_prestamos_recogido">
                     <button onClick={e => recogidoPrestamo(prestamo.id, prestamo.libro.id, prestamo.libro.titulo, e, prestamo.nombre)} className="adminInfo_acciones_editar">Recogido</button>
                     <button onClick={e => cancelPrestamo(prestamo.id, prestamo.libro.id, prestamo.libro.titulo, e, prestamo.nombre)} className="adminInfo_acciones_eliminar">Cancelar</button>
                 </div> 
             }
             { estado == "Recogido" && <div className="adminInfo_acciones admin_prestamos_recogido">
-                    <button className="adminInfo_acciones_editar">Devuelto</button>
-                    <button className="adminInfo_acciones_eliminar">No Devuelto</button>
+                    <button onClick={e => devueltoPrestamo(prestamo.id, prestamo.libro.id, prestamo.libro.titulo, e, prestamo.nombre)} className="adminInfo_acciones_editar">Devuelto</button>
+                    <button onClick={e => noDevueltoPrestamo(prestamo.id, prestamo.libro.id, prestamo.libro.titulo, e, prestamo.nombre)} className="adminInfo_acciones_eliminar">No Devuelto</button>
                 </div> 
             }
         </div>

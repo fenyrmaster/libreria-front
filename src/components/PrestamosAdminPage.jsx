@@ -182,11 +182,184 @@ export default function PrestamosAdminPage(){
           });
     } 
 
+    const devolverPedido = async (pedidoId, libroId) => {
+        try{
+            const respuesta = await clienteAxios.patch(`/prestamos/pedido-devuelto/${pedidoId}`, {
+                bookId: libroId
+            });
+            Swal.fire({
+                icon: "success",
+                title: "Libro recogido",
+                text: respuesta.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            setPrestamoManagerReload(true);
+        } catch(error){
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Algo salio mal",
+                text: error.response.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }
+    }
+
+    const devolverPedidoQuestion = (pedidoId, libroId, libroNombre, e, nombre) => {
+        e.preventDefault();
+        Swal.fire({
+            title: "Libro devuelto",
+            icon: "question",
+            text: `Estas seguro de marcar el libro '${libroNombre}' como devuelto del usuario '${nombre}'`,
+            customClass: {
+                title: "swal_title",
+                icon: "swal_icon",
+                htmlContainer: "swal_text",
+                confirmButton: "swal_confirm"
+            },
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Confirmar",
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+                devolverPedido(pedidoId, libroId)
+            }
+          });
+    } 
+
+    const noDevolverPedido = async (pedidoId, libroId, nombre) => {
+        try{
+            const respuesta = await clienteAxios.patch(`/prestamos/pedido-no-devuelto/${pedidoId}`, {
+                bookId: libroId,
+                bookName: nombre
+            });
+            Swal.fire({
+                icon: "success",
+                title: "Libro sin devolver",
+                text: respuesta.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            setPrestamoManagerReload(true);
+        } catch(error){
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Algo salio mal",
+                text: error.response.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }
+    }
+
+    const noDevolverPedidoQuestion = (pedidoId, libroId, libroNombre, e, nombre) => {
+        e.preventDefault();
+        Swal.fire({
+            title: "Libro sin devolver",
+            icon: "question",
+            text: `Estas seguro de marcar el libro '${libroNombre}' como no devuelto del usuario '${nombre}'`,
+            customClass: {
+                title: "swal_title",
+                icon: "swal_icon",
+                htmlContainer: "swal_text",
+                confirmButton: "swal_confirm"
+            },
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Confirmar",
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+                noDevolverPedido(pedidoId, libroId, libroNombre)
+            }
+          });
+    }
+
+    const eliminarPedido = async (pedidoId) => {
+        try{
+            const respuesta = await clienteAxios.delete(`/prestamos/${pedidoId}`);
+            Swal.fire({
+                icon: "success",
+                title: "Prestamo eliminado",
+                text: respuesta.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+            setPrestamoManagerReload(true);
+        } catch(error){
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Algo salio mal",
+                text: error.response.data.message,
+                showConfirmButton: true,
+                customClass: {
+                    title: "swal_title",
+                    icon: "swal_icon",
+                    htmlContainer: "swal_text",
+                    confirmButton: "swal_confirm"
+                }
+            });
+        }
+    }
+
+    const eliminarPrestamoQuestion = (pedidoId, libroNombre, e, nombre) => {
+        e.preventDefault();
+        Swal.fire({
+            title: "Eliminar Prestamo",
+            icon: "question",
+            text: `Estas seguro eliminar el prestamo del libro '${libroNombre}' del usuario '${nombre}'`,
+            customClass: {
+                title: "swal_title",
+                icon: "swal_icon",
+                htmlContainer: "swal_text",
+                confirmButton: "swal_confirm"
+            },
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Confirmar",
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+                eliminarPedido(pedidoId)
+            }
+          });
+    } 
+
     return(
         <div className="book_content admin_prestamos_content">
             <PrestamosAdminFilters/>
             <div className="books admin_prestamos_all">
-                { cargando ? <Spinner/> : (prestamos.length > 0) ? prestamos.map(prestamo => <PrestamoAdmin recogidoPrestamo={marcarRecogidoQuestion} cancelPrestamo={cancelarPedidoQuestion} prestamo={prestamo} key={prestamo.id} estado={prestamo.estado}/>) :  <h3 className="no_users_alert alert_red">No hay prestamos</h3>}
+                { cargando ? <Spinner/> : (prestamos.length > 0) ? prestamos.map(prestamo => <PrestamoAdmin eliminarPrestamo={eliminarPrestamoQuestion} noDevueltoPrestamo={noDevolverPedidoQuestion} devueltoPrestamo={devolverPedidoQuestion} recogidoPrestamo={marcarRecogidoQuestion} cancelPrestamo={cancelarPedidoQuestion} prestamo={prestamo} key={prestamo.id} estado={prestamo.estado}/>) :  <h3 className="no_users_alert alert_red">No hay prestamos</h3>}
             </div>
         </div>
     )

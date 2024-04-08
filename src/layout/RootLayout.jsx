@@ -124,7 +124,7 @@ export default function RootLayout(){
                         <div onClick={() => setSidebar(true)} className="burger_menu">
                             <div className="bar"></div>
                         </div>
-                        <form onSubmit={() => console.log("hello")} className="main_content_search_bar">
+                        <form className="main_content_search_bar">
                             <input className="search_bar" type={"text"} placeholder={"Busca por nombre de libros..."} name={"bookName"}/>
                             <button type="submit" className="main_content_search_bar_button"><ion-icon name="search-outline"></ion-icon></button>
                         </form>

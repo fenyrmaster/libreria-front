@@ -18,7 +18,7 @@ export default function RootLayout(){
     const [sidebar, setSidebar] = useState(false);
 
     const { cargando, auth, setAuth } = useAuth();
-    const { closeAll } = useSidebar();
+    const { closeAll, setSearchUniversal, searchUniversal } = useSidebar();
     const navigate = useNavigate();
 
     const cerrarSesion = async () => {
@@ -49,6 +49,11 @@ export default function RootLayout(){
         });
     }
 
+    const findBooks = e => {
+        e.preventDefault();
+        navigate("/");
+    }
+
     return(
         <>
             <main className="main_content">
@@ -56,7 +61,7 @@ export default function RootLayout(){
                     <ul>
                         <li className="logo">
                             <div className="sidebar_close" onClick={() => setSidebar(false)}>X</div>
-                            <Link href="/" className="logo_link" style={{textDecoration: "none"}}>
+                            <Link to="/" className="logo_link" style={{textDecoration: "none"}}>
                                 <img src={libreriaLogo}></img>
                                 <h1 className="logo_text">Librerias MX</h1>
                             </Link>
@@ -110,6 +115,12 @@ export default function RootLayout(){
                                     <div className="text">Gestionar Libros</div>
                                 </Link>
                             </li> }
+                            { auth.rol == "Administrador" && <li className={`nav-el-9 ${location.pathname == "/auditorias" && "active"}`}>
+                                <Link to="/auditorias" className="link_container" style={{textDecoration: "none"}}>
+                                    <div className="icon"><ion-icon name="information-circle-outline"></ion-icon></div>
+                                    <div className="text">Auditorias</div>
+                                </Link>
+                            </li> }
                         </div>
                         { Object.keys(auth).length != 0 && <div onClick={() => {cerrarSesion(); closeAll();}} className="bottom">
                             <li className="bottom_container">
@@ -124,8 +135,8 @@ export default function RootLayout(){
                         <div onClick={() => setSidebar(true)} className="burger_menu">
                             <div className="bar"></div>
                         </div>
-                        <form className="main_content_search_bar">
-                            <input className="search_bar" type={"text"} placeholder={"Busca por nombre de libros..."} name={"bookName"}/>
+                        <form onSubmit={e => findBooks(e)} className="main_content_search_bar">
+                            <input value={searchUniversal} onChange={e => setSearchUniversal(e.target.value)} className="search_bar" type={"text"} placeholder={"Busca por nombre de libros..."} name={"bookName"}/>
                             <button type="submit" className="main_content_search_bar_button"><ion-icon name="search-outline"></ion-icon></button>
                         </form>
                         { Object.keys(auth).length != 0 ? <Link to={"/cuenta"} className="main_content_user" style={{textDecoration: "none"}}>

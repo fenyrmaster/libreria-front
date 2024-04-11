@@ -13,6 +13,8 @@ import { AuthProvider } from "./context/AuthProvider";
 import ResetPassword from "./components/ResetPassword"
 import { RightSidebarProvider } from "./context/SidebarProvider" 
 import ConfirmMailChange from "./components/confirmMailChange"
+import AuditoriasPage from "./components/AuditoriasPage"
+import NotFound from "./components/NotFound"
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
               <Route path='confirmarCuenta/:codigo' element={<ConfirmCuenta/>}/>
               <Route path='correoCambiado/:codigo' element={<ConfirmMailChange/>}/>
               <Route path='recuperar/:codigo' element={<ResetPassword/>}/>
+              <Route path="auditorias" element={<AuditoriasPage/>}/>
             </Route>
+            <Route path="*" element={<NotFound/>}></Route>
           </Routes>
         </RightSidebarProvider>
       </AuthProvider>

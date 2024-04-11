@@ -176,6 +176,63 @@ body{
     color: #1EEAC8;
 }
 
+.nav-el-9:hover .icon ion-icon,
+.nav-el-9:hover .text,
+.active.nav-el-9:hover .text{
+    color: #eaba1e;
+}
+
+.admin_filters_auditorias select{
+    border-color: #eaba1e !important;
+    background-color: #fff5d3 !important;
+}
+
+.admin_filters_auditorias select:focus{
+    background-color: white !important;
+}
+
+.admin_auditorias_filter{
+    border-bottom: .1rem solid #eaba1e !important;
+}
+
+.auditorias_content{
+    background-color: #fffcf3 !important;
+    overflow-y: scroll;
+    height: 92%;
+}
+
+.auditoria_Insert{
+    border: .1rem solid #eaba1e;
+}
+
+.auditoria_Delete{
+    border: .1rem solid rgb(232, 19, 19);
+}
+
+.auditoria_Update{
+    border: .1rem solid blue;
+}
+
+.error_404_content{
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, -90%);
+}
+
+.error_404_titulo{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-family: "Oswald", sans-serif;
+}
+
+.error_404_text{
+    font-size: 1.8rem;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 2rem;
+}
+
 .bottom{
     position: absolute;
     bottom: 0;
@@ -185,6 +242,11 @@ body{
 .bottom_container:hover .icon ion-icon,
 .bottom_container:hover .text{
     color: rgb(0, 60, 255)
+}
+
+.error_404_button a{
+    color: black;
+    text-decoration: none !important;
 }
 
 .active{
@@ -203,6 +265,29 @@ body{
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 0 5px var(--clr);
     background: transparent;
+}
+
+.auditorias_content h2{
+    font-size: 2rem;
+    font-family: "Lato", sans-serif;
+    margin: 2rem .5rem .6rem .5rem;
+}
+
+.auditorias_content p{
+    font-size: 1.6rem;
+    font-family: "Lato", sans-serif;
+    margin: 1rem;
+    background-color: white;
+    padding: .5rem .3rem;
+    transition: .3s;
+    border-radius: 1rem;
+}
+
+.auditorias_content p:hover{
+    transform: scale(1.01) translateY(-.2rem);
+    box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
 }
 
 .sidebar ul li.active .text{
@@ -301,6 +386,16 @@ body{
     inset: 5px;
     width: 60px;
     background-color: #1EEAC8;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-9.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #eaba1e;
     border-radius: 50%;
     transition: .5s;
 }
@@ -1672,6 +1767,9 @@ body{
     }
     .main_content_search_bar_button{
         right: 20%;
+    }
+    .auditorias_content p{
+        margin-left: 0;
     }
 }
 

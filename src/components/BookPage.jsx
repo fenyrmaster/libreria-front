@@ -7,13 +7,14 @@ import Spinner from "./Spinner";
 
 export default function BookPage(){
 
-    const { bookManagerReload, setBookManagerReload, filterBooks, setFilterBooks } = useSidebar();
+    const { bookManagerReload, setBookManagerReload, filterBooks, setFilterBooks, searchUniversal, setSearchUniversal } = useSidebar();
     const [ cargando, setCargando ] = useState(false);
     const [ books, setBooks ] = useState([]);
+    const [ universalEnabled, setUniversalEnabled ] = useState(true);
 
     const cargarLibros = async () => {
         setCargando(true);
-        const libros = await clienteAxios.post("/libros/get-all?stockout=false", filterBooks);
+        const libros = await clienteAxios.post(`/libros/get-all?stockout=false&${(searchUniversal != "" && universalEnabled) ? `name=${searchUniversal}` : ""}`, filterBooks);
         setBooks(libros.data.libros);
         setCargando(false);
     }
@@ -25,6 +26,8 @@ export default function BookPage(){
             autores: ""
         });
         cargarLibros();
+        setUniversalEnabled(false);
+        setSearchUniversal("");
     }, []);
 
     useEffect(() => {

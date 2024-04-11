@@ -15,8 +15,10 @@ const RightSidebarProvider = ({ children }) => {
     const [ userManagerReload, setUserManagerReload ] = useState(false);
     const [ bookSelectedId, setBookSelectedId ] = useState("");
     const [ bookManagerReload, setBookManagerReload ] = useState(false);
+    const [ auditoriaManagerReload, setAuditoriaManagerReload ] = useState(false);
     const [ etiquetasManagerReload, setEtiquetasManagerReload ] = useState(false);
     const [ etiquetaForm, setEtiquetaForm ] = useState(false);
+    const [ searchUniversal, setSearchUniversal ] = useState("");
     const [ userManage, setUserManage ] = useState({});
     const [ prestamoManagerReload, setPrestamoManagerReload ] = useState(false);
     const [ bookForm, setBookForm ] = useState(false);
@@ -47,6 +49,10 @@ const RightSidebarProvider = ({ children }) => {
         categoria: "",
         autores: ""
     });
+    const [ auditoriaFilters, setAuditoriaFilters ] = useState({
+        accion: "",
+        tabla: ""
+    })
 
     const navigate = useNavigate();
 
@@ -86,15 +92,6 @@ const RightSidebarProvider = ({ children }) => {
         })
         
         setBookSelectedId("");
-        setPrestamoFilterData({
-            nombre: "",
-            estado: ""
-        });
-        setFilterBooks({
-            titulo: "",
-            categoria: "",
-            autores: ""
-        })
 
         choice == "userInfo" && setUserChangeInfo(true);
         choice == "userData" && setUserSidebar(true);
@@ -131,15 +128,6 @@ const RightSidebarProvider = ({ children }) => {
             imagen_portada: null
         });
         setBookSelectedId("");
-        setPrestamoFilterData({
-            nombre: "",
-            estado: ""
-        });
-        setFilterBooks({
-            titulo: "",
-            categoria: "",
-            autores: ""
-        })
     }
 
     return(
@@ -162,6 +150,12 @@ const RightSidebarProvider = ({ children }) => {
             bookSelectedId,
             prestamoManagerReload,
             prestamoFilterData,
+            auditoriaManagerReload,
+            auditoriaFilters,
+            searchUniversal,
+            setSearchUniversal,
+            setAuditoriaFilters,
+            setAuditoriaManagerReload,
             setBookSelectedId,
             setPrestamoManagerReload,
             setPrestamoFilterData,

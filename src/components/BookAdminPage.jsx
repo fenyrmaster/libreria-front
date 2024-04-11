@@ -54,6 +54,11 @@ export default function BookAdminPage(){
             });
             navigate("/");
         }
+        setFilterBooks({
+            titulo: "",
+            categoria: "",
+            autores: ""
+        })
         cargarLibros();
     }, []);
 

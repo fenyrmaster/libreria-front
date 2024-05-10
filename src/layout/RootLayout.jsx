@@ -150,7 +150,7 @@ export default function RootLayout(){
                         </Link> }
                     </header>
                     <div className="page">
-                        <div className={`sidebar_filter ${sidebar ? "" : "hidden"}`}></div>
+                        <div className={`sidebar_filter ${sidebar ? "" : "hidden"}`} onClick={() => setSidebar(false)}></div>
                         <div className="content_module">
                             { cargando ? <Spinner/> : <Outlet/> }
                         </div>

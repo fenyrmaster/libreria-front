@@ -114,7 +114,7 @@ export default function PrestamosPage(){
             },
             showCancelButton: true,
             cancelButtonText: "Cancelar",
-            confirmButtonText: "Eliminar",
+            confirmButtonText: "Confirmar",
             allowOutsideClick: () => !Swal.isLoading()
           }).then((result) => {
             if (result.isConfirmed) {

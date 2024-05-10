@@ -579,13 +579,15 @@ body{
 
 .book_filters_input_container label{
     font-weight: 600;
+    font-size: 1.4rem;
     margin-right: 1rem;
 }
 
 .book_filters_input_container input{
     background-color: #ffa21731;
     border-radius: 1rem;
-    padding: .5rem 1rem;
+    padding: .5rem .5rem;
+    font-size: 1.3rem;
     border: solid .1rem #ffa217d0;
     color: rgb(88, 88, 88);
     outline: none;
@@ -594,7 +596,8 @@ body{
 .book_filters_input_container select{
     background-color: #ffa21731;
     border-radius: 1rem;
-    padding: .5rem 1rem;
+    padding: .5rem .5rem;
+    font-size: 1.3rem;
     border: solid .1rem #ffa217d0;
     color: rgb(88, 88, 88);
     outline: none;
@@ -1480,12 +1483,29 @@ body{
 
 .user_card_data_name{
     font-size: 1.5rem;
+    width: 16rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-family: "Oswald", sans-serif;
+}
+
+.user_card_data_email{
+    border-bottom: .1rem solid rgb(172, 3, 239);
+    padding-bottom: .5rem;
+}
+
+.user_card_data_number{
+    padding-top: .5rem;
 }
 
 .user_card_data_email,
 .user_card_data_number{
     font-size: 1.4rem;
+    width: 16rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-family: "Lato", sans-serif;
 }
 
@@ -1523,6 +1543,15 @@ body{
 .sidebar_user_info_group  p{
     font-family: "Lato", sans-serif;
     font-size: 1.6rem;
+}
+
+.sidebar_user_info_group:nth-child(5){
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    width: 25rem !important;
+    hyphens: auto;
+    white-space: normal!important; 
 }
 
 .sidebar_user_info_img img{

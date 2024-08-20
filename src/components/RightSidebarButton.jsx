@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 
-export default function RightSidebarButton({text, color, icon, whiteBG, disabled_btn}){
+export default function RightSidebarButton({text, color, icon, whiteBG, disabled_btn, font_size}){
     const Button = styled.button`
-        font-size: 2.5rem;
+        font-size: ${font_size ? font_size : 2.5}rem;
         background-color: transparent;
         border: none;
         color: black;

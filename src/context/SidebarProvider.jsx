@@ -12,6 +12,7 @@ const RightSidebarProvider = ({ children }) => {
     const [ bookShow, setBookShow ] = useState({});
     const [ bookShowOption, setBookShowOption ] = useState(false);
     const [ userSidebar, setUserSidebar ] = useState(false);
+    const [ bookDiscountSidebar, setBookDiscountSidebar ] = useState(false);
     const [ userManagerReload, setUserManagerReload ] = useState(false);
     const [ bookSelectedId, setBookSelectedId ] = useState("");
     const [ bookManagerReload, setBookManagerReload ] = useState(false);
@@ -41,6 +42,7 @@ const RightSidebarProvider = ({ children }) => {
         autores: "",
         fecha_publicacion: "",
         paginas: 0,
+        precio: 0,
         imagen_portada: null
     })
     const [ tagsBookFormSelected, setTagsBookFormSelected ] = useState([]);
@@ -52,7 +54,15 @@ const RightSidebarProvider = ({ children }) => {
     const [ auditoriaFilters, setAuditoriaFilters ] = useState({
         accion: "",
         tabla: ""
-    })
+    });
+
+    const [bookDiscountData, setBookDiscountData] = useState({
+        oferta_fin: "",
+        oferta_inicio: "",
+        descuento: 0,
+        bookId: "",
+        titulo: ""
+    });
 
     const navigate = useNavigate();
 
@@ -69,6 +79,7 @@ const RightSidebarProvider = ({ children }) => {
         setUserSidebar(false);
         setEtiquetaForm(false);
         setBookForm(false);
+        setBookDiscountSidebar(false);
         setUserManage({});
         setBookShow({});
         setBookShowOption(false);
@@ -88,9 +99,16 @@ const RightSidebarProvider = ({ children }) => {
             editorial: "",
             fecha_publicacion: "",
             paginas: 0,
+            precio: 0,
             imagen_portada: null
         })
-        
+        setBookDiscountData({
+            oferta_fin: "",
+            oferta_inicio: "",
+            descuento: 0,
+            bookId: "",
+            titulo: ""
+        });
         setBookSelectedId("");
 
         choice == "userInfo" && setUserChangeInfo(true);
@@ -98,6 +116,7 @@ const RightSidebarProvider = ({ children }) => {
         choice == "etiquetaForm" && setEtiquetaForm(true);
         choice == "bookForm" && setBookForm(true);
         choice == "bookShow" && setBookShowOption(true);
+        choice == "bookDiscount" && setBookDiscountSidebar(true);
     }
 
     const closeAll = () => {
@@ -110,6 +129,7 @@ const RightSidebarProvider = ({ children }) => {
         setBookShowOption(false);
         setBookSelectedId("");
         setTagsBookFormSelected([]);
+        setBookDiscountSidebar(false);
         setEtiquetaFormData({
             id: "",
             nombre: "",
@@ -125,7 +145,15 @@ const RightSidebarProvider = ({ children }) => {
             editorial: "",
             fecha_publicacion: "",
             paginas: 0,
+            precio: 0,
             imagen_portada: null
+        });
+        setBookDiscountData({
+            oferta_fin: "",
+            oferta_inicio: "",
+            descuento: 0,
+            bookId: "",
+            titulo: ""
         });
         setBookSelectedId("");
     }
@@ -153,6 +181,9 @@ const RightSidebarProvider = ({ children }) => {
             auditoriaManagerReload,
             auditoriaFilters,
             searchUniversal,
+            bookDiscountData,
+            bookDiscountSidebar,
+            setBookDiscountData,
             setSearchUniversal,
             setAuditoriaFilters,
             setAuditoriaManagerReload,

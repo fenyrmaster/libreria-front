@@ -104,6 +104,7 @@ export default function SidebarBookForm(){
                 formData.append("paginas", bookFormData.paginas);
                 formData.append("imagen_portada", bookFormData.imagen_portada[0]);
                 formData.append("etiquetas", tagsBookFormSelected);
+                formData.append("precio", bookFormData.precio);
                 formData.append("editorial", bookFormData.editorial);
                 const respuesta = await clienteAxios.post("/libros", formData);
                 setCargando(false);
@@ -119,6 +120,7 @@ export default function SidebarBookForm(){
                     fecha_publicacion: "",
                     editorial: "",
                     paginas: 0,
+                    precio: 0,
                     imagen_portada: null
                 })
                 Swal.fire({
@@ -146,6 +148,7 @@ export default function SidebarBookForm(){
                 formData.append("fecha_publicacion", bookFormData.fecha_publicacion);
                 formData.append("paginas", bookFormData.paginas);
                 formData.append("etiquetas", tagsBookFormSelected);
+                formData.append("precio", bookFormData.precio);
                 formData.append("editorial", bookFormData.editorial);
                 const respuesta = await clienteAxios.patch(`/libros/${bookFormData.id}`, formData);
                 setCargando(false);
@@ -161,6 +164,7 @@ export default function SidebarBookForm(){
                     fecha_publicacion: "",
                     editorial: "",
                     paginas: 0,
+                    precio: 0,
                     imagen_portada: null
                 })
                 Swal.fire({
@@ -222,6 +226,10 @@ export default function SidebarBookForm(){
                 <input onChange={e => setBookFormData({...bookFormData, [e.target.name]: e.target.value})} value={bookFormData.paginas} placeholder="No. de paginas..." type={"number"} id="paginas" className="sidebar_book_input" name="paginas"/>
             </div>
             <div className="sidebar_book_form_group">
+                <label htmlFor="precio">Precio:</label>
+                <input onChange={e => setBookFormData({...bookFormData, [e.target.name]: e.target.value})} value={bookFormData.precio} placeholder="Precio..." type={"number"} id="precio" className="sidebar_book_input" name="precio"/>
+            </div>
+            <div className="sidebar_book_form_group">
                 <label htmlFor="stock">Stock:</label>
                 <input onChange={e => setBookFormData({...bookFormData, [e.target.name]: e.target.value})} value={bookFormData.stock} placeholder="Cantidad disponible..." id="stock" type={"number"} className="sidebar_book_input" name="stock"/>
             </div>
@@ -235,7 +243,7 @@ export default function SidebarBookForm(){
             </div>
             <h4 className="sidebar_book_form_tags_h4">Etiquetas:</h4>
             <div className="sidebar_book_form_tags_group">
-                { tagsLoading ? <Spinner/> : tagsChoice.map(tag => <TagsBookForm selectedEtiqueta={selectedEtiqueta} tag={tag}/>) }
+                { tagsLoading ? <Spinner/> : tagsChoice.map(tag => <TagsBookForm key={`${tag.id}-form`} selectedEtiqueta={selectedEtiqueta} tag={tag}/>) }
             </div>
             <RightSidebarButton text={cargando ? (bookFormData.id != "" ? "Modificando..." : "Creando...") : (bookFormData.id != "" ? "Modificar" : "Crear")} color={"#1EEAC8"} disabled_btn={cargando} icon={"add-circle-sharp"}/>
         </form>

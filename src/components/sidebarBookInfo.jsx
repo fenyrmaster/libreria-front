@@ -152,6 +152,9 @@ export default function SidebarBookInfo(){
             <div onClick={() => preguntarSolicitud()}>
                 <RightSidebarButton disabled_btn={cargando} text={cargando ? "Reservando..." : "Reservar"} color={"#ffa117"} icon={"push"}/>
             </div>
+            <div className="book_sidebar_buy">
+                <RightSidebarButton disabled_btn={cargando} text={cargando ? "Comprando..." : "Comprar"} color={"#ffa117"} icon={"cash"}/>
+            </div>
         </>
     )
 }

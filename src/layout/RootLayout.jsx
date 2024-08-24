@@ -79,6 +79,12 @@ export default function RootLayout(){
                                     <div className="text">Mis Prestamos</div>
                                 </Link>
                             </li>}
+                            {auth.rol == "Cliente" && <li className={`nav-el-10 ${location.pathname == "/compras" && "active"}`}>
+                                <Link to="/compras" className="link_container" style={{textDecoration: "none"}}>
+                                    <div className="icon"><ion-icon name="cash-outline"></ion-icon></div>
+                                    <div className="text">Mis Compras</div>
+                                </Link>
+                            </li>}
                             { (auth.rol == "Administrador" || auth.rol == "Cliente") && <li className={`nav-el-3 ${location.pathname == "/cuenta" && "active"}`}>
                                 <Link to="/cuenta" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="person-outline"></ion-icon></div>

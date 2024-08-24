@@ -182,6 +182,12 @@ body{
     color: #eaba1e;
 }
 
+.nav-el-10:hover .icon ion-icon,
+.nav-el-10:hover .text,
+.active.nav-el-10:hover .text{
+    color: #d3fc03;
+}
+
 .admin_filters_auditorias select{
     border-color: #eaba1e !important;
     background-color: #fff5d3 !important;
@@ -396,6 +402,16 @@ body{
     inset: 5px;
     width: 60px;
     background-color: #eaba1e;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.sidebar ul .nav-el-10.active .icon::before{
+    position: absolute;
+    content: "";
+    inset: 5px;
+    width: 60px;
+    background-color: #d3fc03;
     border-radius: 50%;
     transition: .5s;
 }
@@ -1693,6 +1709,11 @@ body{
 
 .admin_prestamos_recogido{
     margin-top: 1.6rem;
+}
+
+.book_input_orange{
+    border: #ffaa00 .1rem solid !important;
+    background-color: #eadabc !important;
 }
 
 @media(max-width: 81.25em){

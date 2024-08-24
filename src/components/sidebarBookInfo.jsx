@@ -9,7 +9,7 @@ import clienteAxios from "../../config/clienteAxios";
 
 export default function SidebarBookInfo(){
 
-    const { bookShow, setBookShow } = useSidebar();
+    const { bookShow, setBookShow, changeSidebar, setBookComprar } = useSidebar();
     const { auth } = useAuth();
     const [ cargando, setCargando ] = useState(false);
     const navigate = useNavigate();
@@ -36,7 +36,6 @@ export default function SidebarBookInfo(){
             });
         } catch(error){
             setCargando(false);
-            console.log(error);
             Swal.fire({
                 icon: "error",
                 title: "Algo salio mal",
@@ -52,7 +51,19 @@ export default function SidebarBookInfo(){
         }
     }
 
-    const preguntarSolicitud = () => {
+    const solicitarCompra = () => {
+        let libroCompra = {
+            bookId: bookShow.id,
+            titulo: bookShow.titulo,
+            cantidad: 1,
+            metodo: "card",
+            stock: bookShow.stock
+        }
+        changeSidebar("bookBuy");
+        setBookComprar(libroCompra);
+    }
+
+    const preguntarSolicitud = accion => {
         if(!auth?.id){
             navigate("/iniciar-sesion");
             Swal.fire({
@@ -99,26 +110,32 @@ export default function SidebarBookInfo(){
             });
             return;
         }
-
-        Swal.fire({
-            title: "Solicitar Libro",
-            icon: "question",
-            text: `Estas seguro de que deseas solicitar el libro '${bookShow.titulo}'`,
-            customClass: {
-                title: "swal_title",
-                icon: "swal_icon",
-                htmlContainer: "swal_text",
-                confirmButton: "swal_confirm"
-            },
-            showCancelButton: true,
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Reservar",
-            allowOutsideClick: () => !Swal.isLoading()
-          }).then((result) => {
-            if (result.isConfirmed) {
-                solicitarBook();
-            }
-        });
+        switch(accion){
+            case "comprar":
+                solicitarCompra();
+                break;
+            case "pedir":
+                Swal.fire({
+                    title: "Solicitar Libro",
+                    icon: "question",
+                    text: `Estas seguro de que deseas solicitar prestado el libro '${bookShow.titulo}'`,
+                    customClass: {
+                        title: "swal_title",
+                        icon: "swal_icon",
+                        htmlContainer: "swal_text",
+                        confirmButton: "swal_confirm"
+                    },
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Reservar",
+                    allowOutsideClick: () => !Swal.isLoading()
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        solicitarBook();
+                    }
+                });
+                break;
+        }
     }
 
     return(
@@ -149,12 +166,12 @@ export default function SidebarBookInfo(){
             <p className="sidebar_book_sinopsis">{bookShow.sinopsis}</p>
 
             <p className={bookShow.stock > 0 ? "sidebar_book_stock" : "sidebar_book_stock agotado"}>{bookShow.stock > 0 ? `${bookShow.stock} Disponibles` : `Agotado`}</p>
-            <div onClick={() => preguntarSolicitud()}>
+            {bookShow.stock > 0 && <><div onClick={() => preguntarSolicitud("pedir")}>
                 <RightSidebarButton disabled_btn={cargando} text={cargando ? "Reservando..." : "Reservar"} color={"#ffa117"} icon={"push"}/>
             </div>
-            <div className="book_sidebar_buy">
+            <div onClick={() => preguntarSolicitud("comprar")} className="book_sidebar_buy">
                 <RightSidebarButton disabled_btn={cargando} text={cargando ? "Comprando..." : "Comprar"} color={"#ffa117"} icon={"cash"}/>
-            </div>
+            </div></>}
         </>
     )
 }

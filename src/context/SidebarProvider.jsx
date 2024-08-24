@@ -22,6 +22,7 @@ const RightSidebarProvider = ({ children }) => {
     const [ searchUniversal, setSearchUniversal ] = useState("");
     const [ userManage, setUserManage ] = useState({});
     const [ prestamoManagerReload, setPrestamoManagerReload ] = useState(false);
+    const [ bookBuy, setBookBuy ] = useState(false);
     const [ bookForm, setBookForm ] = useState(false);
     const [ tagsBookFormLoad, setTagsBookFormLoad ] = useState(true);
     const [ etiquetaFormData, setEtiquetaFormData ] = useState({
@@ -62,6 +63,13 @@ const RightSidebarProvider = ({ children }) => {
         descuento: 0,
         bookId: "",
         titulo: ""
+    });
+    const [bookComprar, setBookComprar] = useState({
+        bookId: "",
+        titulo: "",
+        cantidad: 0,
+        metodo: "card",
+        stock: 0
     });
 
     const navigate = useNavigate();
@@ -109,7 +117,15 @@ const RightSidebarProvider = ({ children }) => {
             bookId: "",
             titulo: ""
         });
+        setBookBuy({
+            bookId: "",
+            titulo: "",
+            cantidad: 0,
+            metodo: "card",
+            stock: 0
+        });
         setBookSelectedId("");
+        setBookBuy(false);
 
         choice == "userInfo" && setUserChangeInfo(true);
         choice == "userData" && setUserSidebar(true);
@@ -117,6 +133,7 @@ const RightSidebarProvider = ({ children }) => {
         choice == "bookForm" && setBookForm(true);
         choice == "bookShow" && setBookShowOption(true);
         choice == "bookDiscount" && setBookDiscountSidebar(true);
+        choice == "bookBuy" && setBookBuy(true);
     }
 
     const closeAll = () => {
@@ -155,6 +172,14 @@ const RightSidebarProvider = ({ children }) => {
             bookId: "",
             titulo: ""
         });
+        setBookComprar({
+            bookId: "",
+            titulo: "",
+            cantidad: 0,
+            metodo: "card",
+            stock: 0
+        });
+        setBookBuy(false);
         setBookSelectedId("");
     }
 
@@ -183,6 +208,9 @@ const RightSidebarProvider = ({ children }) => {
             searchUniversal,
             bookDiscountData,
             bookDiscountSidebar,
+            bookBuy,
+            bookComprar,
+            setBookComprar,
             setBookDiscountData,
             setSearchUniversal,
             setAuditoriaFilters,

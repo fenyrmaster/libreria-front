@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import RightSidebarButton from "./RightSidebarButton";
 import useSidebar from "../hooks/useSidebar";
 import clienteAxios from "../../config/clienteAxios";

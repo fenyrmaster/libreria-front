@@ -15,6 +15,7 @@ import { RightSidebarProvider } from "./context/SidebarProvider"
 import ConfirmMailChange from "./components/confirmMailChange"
 import AuditoriasPage from "./components/AuditoriasPage"
 import NotFound from "./components/NotFound"
+import Compras from "./components/Compras"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path='correoCambiado/:codigo' element={<ConfirmMailChange/>}/>
               <Route path='recuperar/:codigo' element={<ResetPassword/>}/>
               <Route path="auditorias" element={<AuditoriasPage/>}/>
+              <Route path="compras" element={<Compras/>}/>
             </Route>
             <Route path="*" element={<NotFound/>}></Route>
           </Routes>

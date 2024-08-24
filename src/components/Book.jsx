@@ -5,7 +5,7 @@ import useSidebar from "../hooks/useSidebar";
 
 export default function Book({admin, book, deleteEtiquetaFn}){
 
-    const { changeSidebar, setBookShow, setBookShowOption, bookSelectedId, setBookSelectedId, setBookDiscountData } = useSidebar();
+    const { changeSidebar, setBookShow, setBookShowOption, bookSelectedId, setBookSelectedId, setBookDiscountData, setBookComprar } = useSidebar();
 
     const currentDate = new Date().getTime();
     const startDate = new Date(book?.oferta_inicio);
@@ -24,14 +24,14 @@ export default function Book({admin, book, deleteEtiquetaFn}){
     }
 
     return(
-        <div onClick={() => {if(admin == false){changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}}} className={`book ${admin && "book_blue"} ${bookSelectedId == book?.id && "book_selected"}`}>
-            <img onClick={() => {if(admin == true){changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}}}  className="book_image" src={book?.image}/>
-            <div onClick={() => {if(admin == true){changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}}} className="book_categorias">
+        <div className={`book ${admin && "book_blue"} ${bookSelectedId == book?.id && "book_selected"}`}>
+            <img onClick={() => {changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}}  className="book_image" src={book?.image}/>
+            <div onClick={() => {changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}} className="book_categorias">
                 { book?.etiquetas.map(etiqueta => <h3 key={etiqueta.id} className="book_categoria">{etiqueta.nombre}</h3>) }
             </div>
-            <h4 onClick={() => {if(admin == true){changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}}} className="book_titulo">{book?.titulo}</h4>
-            <p onClick={() => {if(admin == true){changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}}} className="book_autores">{book?.autores}</p>
-            {!admin && <BookQuickActions/>}
+            <h4 onClick={() => {changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}} className="book_titulo">{book?.titulo}</h4>
+            <p onClick={() => {changeSidebar("bookShow"); setBookShow(book); setBookShowOption(true); setBookSelectedId(book?.id)}} className="book_autores">{book?.autores}</p>
+            {!admin && <BookQuickActions setBookComprar={setBookComprar} bookSelectedId={bookSelectedId} book={book} changeSidebar={changeSidebar} setBookShow={setBookShow} setBookShowOption={setBookShowOption} setBookSelectedId={setBookSelectedId}/>}
             <div className="book_precio">
                 {(currentDate > startDate  && currentDate < endDate) && <p className="book_precio_descuento">{book?.descuento}%</p>}
                 <div className="book_precio_precios">

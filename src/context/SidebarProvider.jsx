@@ -19,6 +19,7 @@ const RightSidebarProvider = ({ children }) => {
     const [ auditoriaManagerReload, setAuditoriaManagerReload ] = useState(false);
     const [ etiquetasManagerReload, setEtiquetasManagerReload ] = useState(false);
     const [ etiquetaForm, setEtiquetaForm ] = useState(false);
+    const [ compraManagerReload, setCompraManagerReload ] = useState(false);
     const [ searchUniversal, setSearchUniversal ] = useState("");
     const [ userManage, setUserManage ] = useState({});
     const [ prestamoManagerReload, setPrestamoManagerReload ] = useState(false);
@@ -210,6 +211,8 @@ const RightSidebarProvider = ({ children }) => {
             bookDiscountSidebar,
             bookBuy,
             bookComprar,
+            compraManagerReload,
+            setCompraManagerReload,
             setBookComprar,
             setBookDiscountData,
             setSearchUniversal,

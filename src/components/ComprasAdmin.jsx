@@ -7,8 +7,9 @@ import useSidebar from '../hooks/useSidebar';
 import { useNavigate } from 'react-router-dom';
 import Spinner from './Spinner';
 import CompraCard from './CompraCard';
+import CompraCardAdmin from './CompraCardAdmin';
 
-export default function Compras() {
+export default function ComprasAdmin() {
 
   const [ compras, setCompras ] = useState([]);
   const [ cargando, setCargando ] = useState(false);
@@ -23,7 +24,7 @@ export default function Compras() {
 
   const cargarPrestamos = async () => {
       setCargando(true);
-      const compras = await clienteAxios.post("/compras/get-all-user?oneuser=true", compraFilterData);
+      const compras = await clienteAxios.post("/compras/get-all", compraFilterData);
       setCompras(compras.data.compras);
       setCargando(false);
   }
@@ -43,11 +44,11 @@ export default function Compras() {
             }
         });
         navigate("/iniciar-sesion");
-    } else if(auth.rol != "Cliente"){
+    } else if(auth.rol != "Administrador"){
         Swal.fire({
             icon: "error",
             title: "Sin permiso",
-            text: "Los administradores no pueden tener compras",
+            text: "No tienes permiso para acceder a esta pagina",
             showConfirmButton: true,
             customClass: {
                 title: "swal_title",
@@ -72,14 +73,14 @@ useEffect(() => {
   }
 }, [compraManagerReload]);
 
-const cancelarPedido = async (pedidoId, libroId) => {
+const cancelarCompra = async (pedidoId, libroId) => {
   try{
-      const respuesta = await clienteAxios.patch(`/compras/cancelar-compra-user/${pedidoId}`, {
+      const respuesta = await clienteAxios.patch(`/compras/cancelar-compra-admin/${pedidoId}`, {
           bookId: libroId
       });
       Swal.fire({
           icon: "success",
-          title: "Prestamo cancelado",
+          title: "Compra cancelada",
           text: respuesta.data.message,
           showConfirmButton: true,
           customClass: {
@@ -107,12 +108,12 @@ const cancelarPedido = async (pedidoId, libroId) => {
   }
 }
 
-const cancelarCompraQuestion = (pedidoId, libroId, libroNombre, e) => {
+const cancelarCompraQuestion = (pedidoId, libroId, libroNombre, e, nombre) => {
   e.preventDefault();
   Swal.fire({
       title: "Cancelar Pedido",
       icon: "question",
-      text: `Estas seguro de que deseas cancelar la compra de '${libroNombre}'`,
+      text: `Estas seguro de que deseas cancelar la compra de '${libroNombre}' del usuario '${nombre}'`,
       customClass: {
           title: "swal_title",
           icon: "swal_icon",
@@ -125,16 +126,72 @@ const cancelarCompraQuestion = (pedidoId, libroId, libroNombre, e) => {
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
       if (result.isConfirmed) {
-          cancelarPedido(pedidoId, libroId)
+          cancelarCompra(pedidoId, libroId)
+      }
+    });
+}
+
+const libroCompradoEfectivo = async (pedidoId, libroId) => {
+  try{
+      const respuesta = await clienteAxios.patch(`/compras/pedido-comprado-recogido/${pedidoId}`);
+      Swal.fire({
+          icon: "success",
+          title: "Compra completada",
+          text: respuesta.data.message,
+          showConfirmButton: true,
+          customClass: {
+              title: "swal_title",
+              icon: "swal_icon",
+              htmlContainer: "swal_text",
+              confirmButton: "swal_confirm"
+          }
+      });
+      setCompraManagerReload(true);
+  } catch(error){
+      console.log(error);
+      Swal.fire({
+          icon: "error",
+          title: "Algo salio mal",
+          text: error.response.data.message,
+          showConfirmButton: true,
+          customClass: {
+              title: "swal_title",
+              icon: "swal_icon",
+              htmlContainer: "swal_text",
+              confirmButton: "swal_confirm"
+          }
+      });
+  }
+}
+
+const libroCompradoQuestion = (pedidoId, libroId, libroNombre, e, nombre) => {
+  e.preventDefault();
+  Swal.fire({
+      title: "Completar Compra",
+      icon: "question",
+      text: `Estas seguro de que deseas marcar el pedido del usuario '${nombre}' del libro '${libroNombre}' como completado?`,
+      customClass: {
+          title: "swal_title",
+          icon: "swal_icon",
+          htmlContainer: "swal_text",
+          confirmButton: "swal_confirm"
+      },
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Confirmar",
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+          libroCompradoEfectivo(pedidoId, libroId)
       }
     });
 } 
 
   return (
     <div className="book_content compras_background">
-    <CompraFilters compraFilterData={compraFilterData} setCompraFilterData={setCompraFilterData} admin={false}/>
+    <CompraFilters admin={true} compraFilterData={compraFilterData} setCompraFilterData={setCompraFilterData}/>
         <div className="books prestamos_contenido">
-          { cargando ? <Spinner/> : (compras.length <= 0 ? <h3 className="no_users_alert alert_orange">No hay compras realizadas</h3> : compras.map(compra => <CompraCard cancelPedido={cancelarCompraQuestion} key={compra.id} compra={compra} estado={compra.estado}/>)) }
+          { cargando ? <Spinner/> : (compras.length <= 0 ? <h3 className="no_users_alert alert_orange">No hay compras realizadas</h3> : compras.map(compra => <CompraCardAdmin libroCompradoQuestion={libroCompradoQuestion} cancelarCompraQuestion={cancelarCompraQuestion} key={compra.id} compra={compra} estado={compra.estado}/>)) }
         </div>
     </div>
   )

@@ -1342,6 +1342,91 @@ body{
     background-color: #fce3df;
 }
 
+/* Estilos para los pagos */
+.compras_background{
+    background-color: #fcfff4;
+}
+
+.compra_filters{
+    border-bottom: .1rem solid rgb(186, 219, 0) !important;
+}
+
+.compra_filters_group select,
+.compra_filters_group input{
+    background-color: #feffdc;
+    border: .1rem solid #96d019;
+}
+
+.compra_filters_group select:focus,
+.compra_filters_group input:focus{
+    background-color: #ffffff;
+    border: .1rem solid #96d019;
+}
+
+.compra_detalles{
+    margin: 0 1rem 1rem;
+    padding-bottom: 1rem;
+    border-bottom: .1rem solid black;
+}
+
+.compra_detalles_info{
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+}
+
+.compra_detalles_info span{
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+}
+
+.compra_cancelado .prestamo_texto{
+    color: rgb(117, 117, 117);
+}
+
+.compra_datos:hover.prestamo_cancelado{
+    border: .1rem solid rgb(117, 117, 117);
+}
+
+
+.compra_cancelado .prestamo_texto{
+    color: rgb(117, 117, 117);
+}
+
+.prestamo_datos:hover.compra_cancelado{
+    border: .1rem solid rgb(117, 117, 117);
+}
+
+.compra_reservado .prestamo_texto{
+    color:rgb(0, 153, 224) !important;
+}
+
+.prestamo_datos:hover.compra_reservado{
+    border: .1rem solid rgb(0, 153, 224);
+}
+
+.compra_pagado .prestamo_texto{
+    color: rgb(0, 202, 0);
+}
+
+.prestamo_datos:hover.compra_pagado{
+    border: .1rem solid rgb(0, 202, 0);
+}
+
+.compra_entregado .prestamo_texto{
+    color: rgb(166, 0, 231);
+}
+
+.prestamo_datos:hover.compra_entregado{
+    border: .1rem solid rgb(166, 0, 231);
+}
+
+.reserved_actions{
+    margin-bottom: 1rem;
+}
+.reserved_actions:last-of-type{
+    border: .2rem solid orange !important;
+}
 /* Estilos para los prestamos */
 
 .prestamos{

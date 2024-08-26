@@ -121,6 +121,12 @@ export default function RootLayout(){
                                     <div className="text">Gestionar Libros</div>
                                 </Link>
                             </li> }
+                            {auth.rol == "Administrador" && <li className={`nav-el-10 ${location.pathname == "/gestion-compras" && "active"}`}>
+                                <Link to="/gestion-compras" className="link_container" style={{textDecoration: "none"}}>
+                                    <div className="icon"><ion-icon name="cash-outline"></ion-icon></div>
+                                    <div className="text">Gestionar Compras</div>
+                                </Link>
+                            </li>}
                             { auth.rol == "Administrador" && <li className={`nav-el-9 ${location.pathname == "/auditorias" && "active"}`}>
                                 <Link to="/auditorias" className="link_container" style={{textDecoration: "none"}}>
                                     <div className="icon"><ion-icon name="information-circle-outline"></ion-icon></div>

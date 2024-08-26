@@ -16,6 +16,7 @@ import ConfirmMailChange from "./components/confirmMailChange"
 import AuditoriasPage from "./components/AuditoriasPage"
 import NotFound from "./components/NotFound"
 import Compras from "./components/Compras"
+import ComprasAdmin from "./components/ComprasAdmin"
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               <Route path='recuperar/:codigo' element={<ResetPassword/>}/>
               <Route path="auditorias" element={<AuditoriasPage/>}/>
               <Route path="compras" element={<Compras/>}/>
+              <Route path="gestion-compras" element={<ComprasAdmin/>}/>
             </Route>
             <Route path="*" element={<NotFound/>}></Route>
           </Routes>
